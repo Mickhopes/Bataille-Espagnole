@@ -1,12 +1,9 @@
 package batailleespagnole;
 
-import java.util.Enumeration;
-
-
 // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
 // #[regen=yes,id=DCE.6384B198-9A51-156D-F380-21276E467CE3]
 // </editor-fold> 
-public class Carte {
+public class Carte implements Comparable{
     
     static enum TypeOrdre{
         AS, TROIS, ROI, DAME, CAVALIER, DIX, NEUF, HUIT, SEPT, SIX, CINQ, QUATRE, DEUX;
@@ -24,7 +21,9 @@ public class Carte {
 
     private TypeFamille famille;
    
-    public Carte(TypeOrdre ordre){
+    public Carte(TypeOrdre ordre, TypeFamille famille){
+        this.ordre = ordre;
+        this.famille = famille;
         switch(ordre){
             case AS:
                 this.valeur=11;
@@ -90,6 +89,17 @@ public class Carte {
 
     public void setFamille(TypeFamille famille) {
         this.famille = famille;
+    }
+    
+    @Override
+    public int compareTo(Object o){
+        if (((Carte)o).getValeur() > this.valeur){
+            return -1;
+        }
+        else if(((Carte)o).getValeur() < this.valeur){
+            return 1;
+        }
+        return 0;
     }
 }
 
