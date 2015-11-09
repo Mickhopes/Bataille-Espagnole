@@ -54,6 +54,7 @@ public class Jeu {
     // #[regen=yes,id=DCE.EA483816-8429-22EF-D30C-6BAC08AFA7AB]
     // </editor-fold> 
     public void comptePoints () {
+        
     }
 
 }
