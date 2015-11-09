@@ -1,57 +1,71 @@
 package batailleespagnole;
 
-
 // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
 // #[regen=yes,id=DCE.6384B198-9A51-156D-F380-21276E467CE3]
 // </editor-fold> 
-public class Carte {
+public class Carte implements Comparable{
+    
+    static enum TypeOrdre{
+        AS, TROIS, ROI, DAME, CAVALIER, DIX, NEUF, HUIT, SEPT, SIX, CINQ, QUATRE, DEUX;
+    }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.94E54F8B-922C-A362-FFC7-336B808D8B63]
     // </editor-fold> 
-    private int ordre;
+    private TypeOrdre ordre;
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.EB3D496D-A648-B074-ECDB-8BFBD8AA17D5]
     // </editor-fold> 
     private int valeur;
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.83844F18-BE86-277D-F532-D6B0CEC29AC2]
-    // </editor-fold> 
-    private Joueur mJoueur;
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.A46820AC-CBAD-1A61-F60E-47CAD2081B96]
-    // </editor-fold> 
-    public Carte () {
-    }
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.4610DEA3-26AF-1381-F57B-AEEED9483041]
-    // </editor-fold> 
-    public Joueur getJoueur () {
-        return mJoueur;
-    }
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.DA5E8A9B-B4FE-841E-FEE4-5FD75C0B9325]
-    // </editor-fold> 
-    public void setJoueur (Joueur val) {
-        this.mJoueur = val;
+    private TypeFamille famille;
+   
+    public Carte(TypeOrdre ordre, TypeFamille famille){
+        this.ordre = ordre;
+        this.famille = famille;
+        switch(ordre){
+            case AS:
+                this.valeur=11;
+                break;
+            case TROIS:
+                this.valeur=10;
+                break;
+            case ROI:
+                this.valeur=4;
+                break;
+            case DAME:
+                this.valeur=3;
+                break;
+            case CAVALIER:
+                this.valeur=2;
+                break;
+            case DIX:
+            case NEUF:
+            case HUIT:
+            case SEPT:
+            case SIX:
+            case CINQ:
+            case QUATRE:
+            case DEUX:
+                this.valeur=0;
+                break;
+            default:
+                System.err.println("Erreur : ordre de carte inexistant");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,regenBody=yes,id=DCE.4B0892EA-7CCC-BD9C-0057-36BCE26BA1F5]
     // </editor-fold> 
-    public int getOrdre () {
+    public TypeOrdre getOrdre () {
         return ordre;
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,regenBody=yes,id=DCE.AFF1BB55-8CB5-1724-8640-68D544841CB7]
     // </editor-fold> 
-    public void setOrdre (int val) {
+    public void setOrdre (TypeOrdre val) {
         this.ordre = val;
     }
 
@@ -69,5 +83,23 @@ public class Carte {
         this.valeur = val;
     }
 
+    public TypeFamille getFamille() {
+        return famille;
+    }
+
+    public void setFamille(TypeFamille famille) {
+        this.famille = famille;
+    }
+    
+    @Override
+    public int compareTo(Object o){
+        if (((Carte)o).getValeur() > this.valeur){
+            return -1;
+        }
+        else if(((Carte)o).getValeur() < this.valeur){
+            return 1;
+        }
+        return 0;
+    }
 }
 
