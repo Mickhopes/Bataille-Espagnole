@@ -21,22 +21,36 @@ public class Partie {
     // #[regen=yes,id=DCE.FD48E22F-8151-943A-BC2D-1120127A062E]
     // </editor-fold> 
     private ArrayList<Jeu> mJeu;
+    
+    private final int nbJoueurs;
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.41806A56-6E71-2568-2CC1-3C00DF0D9BCB]
     // </editor-fold> 
-    private Joueur mJoueur;
+    private ArrayList<Joueur> mJoueurs;
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.99CAE846-9944-0EE3-736F-37812BED87D3]
     // </editor-fold> 
-    public Partie () {
+    public Partie (int nbJoueurs) {
+        this.nbJoueurs = nbJoueurs;
+        this.nbJeux = 10;
+        this.nbPointsMax = 300;
+        
+        this.mJeu = new ArrayList<>();
+        this.mJoueurs = new ArrayList<>();
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.E30D0BAE-7F5D-C16E-E935-2B69C94A4676]
     // </editor-fold> 
-    public Partie (int nbJoueurs) {
+    public Partie (int nbJoueurs, int nbJeux, int nbPointsMax) {
+        this.nbJoueurs = nbJoueurs;
+        this.nbJeux = nbJeux;
+        this.nbPointsMax = nbPointsMax;
+        
+        this.mJeu = new ArrayList<>();
+        this.mJoueurs = new ArrayList<>();
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
@@ -71,7 +85,7 @@ public class Partie {
     // #[regen=yes,id=DCE.1CCC8F6A-B92D-EAE7-F18C-0FF8236446E0]
     // </editor-fold> 
     public int getNbJoueurs () {
-        return 0;
+        return this.nbJoueurs;
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
@@ -91,15 +105,15 @@ public class Partie {
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,regenBody=yes,id=DCE.55EAECAC-85EB-7EA1-B923-2020077C5418]
     // </editor-fold> 
-    public Joueur getJoueur () {
-        return mJoueur;
+    public ArrayList<Joueur> getJoueurs () {
+        return mJoueurs;
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,regenBody=yes,id=DCE.DF758A1B-1157-4C93-8FC7-F39946E40493]
     // </editor-fold> 
-    public void setJoueur (Joueur val) {
-        this.mJoueur = val;
+    public void setJoueurs (ArrayList<Joueur> val) {
+        this.mJoueurs = val;
     }
 
 }
