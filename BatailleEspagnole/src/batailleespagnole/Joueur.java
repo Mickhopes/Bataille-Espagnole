@@ -23,11 +23,6 @@ public class Joueur {
     private boolean tour;
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.19AA4D84-6B0A-E652-4FB4-AF29F726A31C]
-    // </editor-fold> 
-    private int Unnamed;
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.BE6D8EFC-C7C8-5E18-76BD-752E80A886A7]
     // </editor-fold> 
     private ArrayList<Carte> mCarte;
@@ -35,12 +30,14 @@ public class Joueur {
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.B1CC00A2-ECB6-67A4-6437-8C82AF977CFB]
     // </editor-fold> 
-    private ArrayList<Partie> mPartie;
+    private Partie mPartie;
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.FE59E101-615A-2947-7EA1-96F1F50371BE]
     // </editor-fold> 
-    public Joueur () {
+    public Joueur (String nom) {
+        this.nom = nom;
+        this.nbPoints = 0;
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
@@ -60,14 +57,14 @@ public class Joueur {
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,regenBody=yes,id=DCE.5B763AA0-337C-FCC8-7B08-FF7C4E142B78]
     // </editor-fold> 
-    public ArrayList<Partie> getPartie () {
+    public Partie getPartie () {
         return mPartie;
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,regenBody=yes,id=DCE.4348DC49-88EC-2A08-1E73-F709231262CF]
     // </editor-fold> 
-    public void setPartie (ArrayList<Partie> val) {
+    public void setPartie (Partie val) {
         this.mPartie = val;
     }
 
