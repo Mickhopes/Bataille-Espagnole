@@ -1,6 +1,7 @@
 package batailleespagnole;
 
 import java.util.ArrayList; 
+import java.util.LinkedList;
 
 // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
 // #[regen=yes,id=DCE.CC54FE1A-D482-F1F8-4BC2-0DB57B57C53A]
@@ -21,11 +22,47 @@ public class Joueur {
     // #[regen=yes,id=DCE.68E76D13-941C-AAF3-B239-77A2D7EB4A6C]
     // </editor-fold> 
     private boolean tour;
+    
+    private boolean premier;
+
+    public boolean isPremier() {
+        return premier;
+    }
+
+    public void setPremier(boolean premier) {
+        this.premier = premier;
+    }
+
+    public ArrayList<Carte> getCartesEnMain() {
+        return cartesEnMain;
+    }
+
+    public void setCartesEnMain(ArrayList<Carte> cartesEnMain) {
+        this.cartesEnMain = cartesEnMain;
+    }
+
+    public ArrayList<Carte> getPlisGagnes() {
+        return plisGagnes;
+    }
+
+    public void setPlisGagnes(ArrayList<Carte> plisGagnes) {
+        this.plisGagnes = plisGagnes;
+    }
+
+    public Partie getmPartie() {
+        return mPartie;
+    }
+
+    public void setmPartie(Partie mPartie) {
+        this.mPartie = mPartie;
+    }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.BE6D8EFC-C7C8-5E18-76BD-752E80A886A7]
     // </editor-fold> 
-    private ArrayList<Carte> mCarte;
+    private ArrayList<Carte> cartesEnMain;
+    
+    private ArrayList<Carte> plisGagnes;
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.B1CC00A2-ECB6-67A4-6437-8C82AF977CFB]
@@ -44,14 +81,14 @@ public class Joueur {
     // #[regen=yes,regenBody=yes,id=DCE.ADC6B0D9-0711-4AF3-7E77-6603908D43D9]
     // </editor-fold> 
     public ArrayList<Carte> getCarte () {
-        return mCarte;
+        return cartesEnMain;
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,regenBody=yes,id=DCE.D7E31F2A-853B-CCCC-7416-2CE4F29D3EA3]
     // </editor-fold> 
     public void setCarte (ArrayList<Carte> val) {
-        this.mCarte = val;
+        this.cartesEnMain = val;
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
@@ -119,8 +156,20 @@ public class Joueur {
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.D5451F0E-CF8C-0CD3-7590-145DAA5B4521]
     // </editor-fold> 
-    public Carte piocher () {
-        return null;
+    public void piocher (LinkedList <Carte> tasDeCartes) {
+        /* Si le tas est vide */
+        if(tasDeCartes.isEmpty()){
+            /* le jeu est fini */
+            /* ajouter exceptions */
+        }
+        
+        /* Si le joueur a déjà trois cartes en main */
+        if(cartesEnMain.size() == 3){
+            /* On lui donne rien */
+            /* ajouter exceptions */
+        }
+
+        cartesEnMain.add(tasDeCartes.pop());
     }
 
 }

@@ -23,6 +23,8 @@ public class Partie {
     private ArrayList<Jeu> mJeu;
     
     private final int nbJoueurs;
+    
+    static final int NB_CARTES = 52;
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.41806A56-6E71-2568-2CC1-3C00DF0D9BCB]
@@ -115,6 +117,5 @@ public class Partie {
     public void setJoueurs (ArrayList<Joueur> val) {
         this.mJoueurs = val;
     }
-
 }
 
