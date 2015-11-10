@@ -1,6 +1,6 @@
 package batailleespagnole;
 
-import java.util.ArrayList; 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
@@ -18,13 +18,91 @@ public class Joueur {
     // </editor-fold> 
     private int nbPoints;
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.68E76D13-941C-AAF3-B239-77A2D7EB4A6C]
-    // </editor-fold> 
-    private boolean tour;
-    
     private boolean premier;
 
+    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
+    // #[regen=yes,id=DCE.BE6D8EFC-C7C8-5E18-76BD-752E80A886A7]
+    // </editor-fold> 
+    private ArrayList<Carte> cartesEnMain;
+
+    private ArrayList<Carte> plisGagnes;
+
+    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
+    // #[regen=yes,id=DCE.B1CC00A2-ECB6-67A4-6437-8C82AF977CFB]
+    // </editor-fold> 
+    private Partie mPartie;
+
+    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
+    // #[regen=yes,id=DCE.FE59E101-615A-2947-7EA1-96F1F50371BE]
+    // </editor-fold> 
+    public Joueur(String nom) {
+        this.nom = nom;
+        this.nbPoints = 0;
+        this.premier = false;
+        this.cartesEnMain = new ArrayList<>();
+        this.plisGagnes = new ArrayList<>();
+    }
+
+    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
+    // #[regen=yes,regenBody=yes,id=DCE.ADC6B0D9-0711-4AF3-7E77-6603908D43D9]
+    // </editor-fold> 
+    public ArrayList<Carte> getCarte() {
+        return cartesEnMain;
+    }
+
+    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
+    // #[regen=yes,regenBody=yes,id=DCE.D7E31F2A-853B-CCCC-7416-2CE4F29D3EA3]
+    // </editor-fold> 
+    public void setCarte(ArrayList<Carte> val) {
+        this.cartesEnMain = val;
+    }
+
+    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
+    // #[regen=yes,regenBody=yes,id=DCE.5B763AA0-337C-FCC8-7B08-FF7C4E142B78]
+    // </editor-fold> 
+    public Partie getPartie() {
+        return mPartie;
+    }
+
+    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
+    // #[regen=yes,regenBody=yes,id=DCE.4348DC49-88EC-2A08-1E73-F709231262CF]
+    // </editor-fold> 
+    public void setPartie(Partie val) {
+        this.mPartie = val;
+    }
+
+    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
+    // #[regen=yes,regenBody=yes,id=DCE.A75E7EE8-52B8-B972-69C2-271AB5C0C194]
+    // </editor-fold> 
+    public int getNbPoints() {
+        return nbPoints;
+    }
+
+    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
+    // #[regen=yes,regenBody=yes,id=DCE.2CD0510C-C057-A5CB-1A97-01D965F2BFE2]
+    // </editor-fold> 
+    public void setNbPoints(int val) {
+        this.nbPoints = val;
+    }
+
+    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
+    // #[regen=yes,regenBody=yes,id=DCE.7DCDEA3A-8EFA-3FCC-6BA3-F7E2B34A9FE9]
+    // </editor-fold> 
+    public String getNom() {
+        return nom;
+    }
+
+    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
+    // #[regen=yes,regenBody=yes,id=DCE.E0A9BC8A-DD14-8DD5-6AED-1506876777BE]
+    // </editor-fold> 
+    public void setNom(String val) {
+        this.nom = val;
+    }
+
+    public void ajoutPoints(int val) {
+        this.nbPoints += val;
+    }
+    
     public boolean isPremier() {
         return premier;
     }
@@ -58,113 +136,26 @@ public class Joueur {
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.BE6D8EFC-C7C8-5E18-76BD-752E80A886A7]
-    // </editor-fold> 
-    private ArrayList<Carte> cartesEnMain;
-    
-    private ArrayList<Carte> plisGagnes;
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.B1CC00A2-ECB6-67A4-6437-8C82AF977CFB]
-    // </editor-fold> 
-    private Partie mPartie;
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.FE59E101-615A-2947-7EA1-96F1F50371BE]
-    // </editor-fold> 
-    public Joueur (String nom) {
-        this.nom = nom;
-        this.nbPoints = 0;
-    }
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.ADC6B0D9-0711-4AF3-7E77-6603908D43D9]
-    // </editor-fold> 
-    public ArrayList<Carte> getCarte () {
-        return cartesEnMain;
-    }
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.D7E31F2A-853B-CCCC-7416-2CE4F29D3EA3]
-    // </editor-fold> 
-    public void setCarte (ArrayList<Carte> val) {
-        this.cartesEnMain = val;
-    }
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.5B763AA0-337C-FCC8-7B08-FF7C4E142B78]
-    // </editor-fold> 
-    public Partie getPartie () {
-        return mPartie;
-    }
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.4348DC49-88EC-2A08-1E73-F709231262CF]
-    // </editor-fold> 
-    public void setPartie (Partie val) {
-        this.mPartie = val;
-    }
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.A75E7EE8-52B8-B972-69C2-271AB5C0C194]
-    // </editor-fold> 
-    public int getNbPoints () {
-        return nbPoints;
-    }
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.2CD0510C-C057-A5CB-1A97-01D965F2BFE2]
-    // </editor-fold> 
-    public void setNbPoints (int val) {
-        this.nbPoints = val;
-    }
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.7DCDEA3A-8EFA-3FCC-6BA3-F7E2B34A9FE9]
-    // </editor-fold> 
-    public String getNom () {
-        return nom;
-    }
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.E0A9BC8A-DD14-8DD5-6AED-1506876777BE]
-    // </editor-fold> 
-    public void setNom (String val) {
-        this.nom = val;
-    }
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.6269EE96-3386-EED8-E21C-281C5E4FE5C2]
-    // </editor-fold> 
-    public boolean getTour () {
-        return tour;
-    }
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.6A9CB9C3-23A0-612F-97C9-4ECE546CA1FA]
-    // </editor-fold> 
-    public void setTour (boolean val) {
-        this.tour = val;
-    }
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.1DAF6847-A28B-2D0E-5550-AA504F96E002]
     // </editor-fold> 
-    public void jouer (Carte carte) {
+    public Carte jouer(Carte carte) {
+        cartesEnMain.remove(carte);
+        
+        return carte;
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.D5451F0E-CF8C-0CD3-7590-145DAA5B4521]
     // </editor-fold> 
-    public void piocher (LinkedList <Carte> tasDeCartes) {
+    public void piocher(LinkedList<Carte> tasDeCartes) {
         /* Si le tas est vide */
-        if(tasDeCartes.isEmpty()){
+        if (tasDeCartes.isEmpty()) {
             /* le jeu est fini */
             /* ajouter exceptions */
         }
-        
+
         /* Si le joueur a déjà trois cartes en main */
-        if(cartesEnMain.size() == 3){
+        if (cartesEnMain.size() == 3) {
             /* On lui donne rien */
             /* ajouter exceptions */
         }
@@ -173,4 +164,3 @@ public class Joueur {
     }
 
 }
-

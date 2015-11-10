@@ -1,6 +1,6 @@
 package batailleespagnole;
 
-import java.util.ArrayList; 
+import java.util.ArrayList;
 
 // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
 // #[regen=yes,id=DCE.82ECEC05-F078-B9D4-40D2-A7DE9C6BBD5E]
@@ -21,9 +21,9 @@ public class Partie {
     // #[regen=yes,id=DCE.FD48E22F-8151-943A-BC2D-1120127A062E]
     // </editor-fold> 
     private ArrayList<Jeu> mJeu;
-    
+
     private final int nbJoueurs;
-    
+
     static final int NB_CARTES = 52;
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
@@ -34,11 +34,11 @@ public class Partie {
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.99CAE846-9944-0EE3-736F-37812BED87D3]
     // </editor-fold> 
-    public Partie (int nbJoueurs) {
+    public Partie(int nbJoueurs) {
         this.nbJoueurs = nbJoueurs;
         this.nbJeux = 10;
         this.nbPointsMax = 300;
-        
+
         this.mJeu = new ArrayList<>();
         this.mJoueurs = new ArrayList<>();
     }
@@ -46,11 +46,11 @@ public class Partie {
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.E30D0BAE-7F5D-C16E-E935-2B69C94A4676]
     // </editor-fold> 
-    public Partie (int nbJoueurs, int nbJeux, int nbPointsMax) {
+    public Partie(int nbJoueurs, int nbJeux, int nbPointsMax) {
         this.nbJoueurs = nbJoueurs;
         this.nbJeux = nbJeux;
         this.nbPointsMax = nbPointsMax;
-        
+
         this.mJeu = new ArrayList<>();
         this.mJoueurs = new ArrayList<>();
     }
@@ -58,64 +58,98 @@ public class Partie {
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,regenBody=yes,id=DCE.63A0D835-A956-0A99-E00F-2F8F16DDCF89]
     // </editor-fold> 
-    public int getNbJeux () {
+    public int getNbJeux() {
         return nbJeux;
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,regenBody=yes,id=DCE.2080C94F-5214-795D-4139-137A26358E4E]
     // </editor-fold> 
-    public void setNbJeux (int val) {
+    public void setNbJeux(int val) {
         this.nbJeux = val;
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,regenBody=yes,id=DCE.C2E3B0C5-441F-EDEC-8296-232F81F1A01E]
     // </editor-fold> 
-    public int getNbPointsMax () {
+    public int getNbPointsMax() {
         return nbPointsMax;
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,regenBody=yes,id=DCE.3C29BD50-C0C6-36D6-B355-D4375C5FD600]
     // </editor-fold> 
-    public void setNbPointsMax (int val) {
+    public void setNbPointsMax(int val) {
         this.nbPointsMax = val;
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.1CCC8F6A-B92D-EAE7-F18C-0FF8236446E0]
     // </editor-fold> 
-    public int getNbJoueurs () {
+    public int getNbJoueurs() {
         return this.nbJoueurs;
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,regenBody=yes,id=DCE.18136978-E2CA-EB0A-FB50-1D3AB950D1AA]
     // </editor-fold> 
-    public ArrayList<Jeu> getJeu () {
+    public ArrayList<Jeu> getJeu() {
         return mJeu;
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,regenBody=yes,id=DCE.6D64864B-AE86-BBDA-61E6-9957DCBB51FF]
     // </editor-fold> 
-    public void setJeu (ArrayList<Jeu> val) {
+    public void setJeu(ArrayList<Jeu> val) {
         this.mJeu = val;
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,regenBody=yes,id=DCE.55EAECAC-85EB-7EA1-B923-2020077C5418]
     // </editor-fold> 
-    public ArrayList<Joueur> getJoueurs () {
+    public ArrayList<Joueur> getJoueurs() {
         return mJoueurs;
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,regenBody=yes,id=DCE.DF758A1B-1157-4C93-8FC7-F39946E40493]
     // </editor-fold> 
-    public void setJoueurs (ArrayList<Joueur> val) {
+    public void setJoueurs(ArrayList<Joueur> val) {
         this.mJoueurs = val;
     }
-}
 
+    public void ajoutJoueur(Joueur j) {
+        mJoueurs.add(j);
+    }
+
+    public void supprJoueur(Joueur j) {
+        mJoueurs.remove(j);
+    }
+
+    public void lancerPartie() {
+        mJoueurs.get(0).setPremier(true);
+        int i = 0, maxPoints = 0;
+        while(i<nbJeux || maxPoints < nbPointsMax) {
+            Jeu j = new Jeu(mJoueurs);
+            j.creerPaquet();
+            j.melangerCartes();
+            j.distribuer(mJoueurs);
+            j.determinerAtout();
+            /* appel à la fonction qui fait jouer les joueurs */
+            while (!(j.getTasDeCartes().isEmpty())) {
+                j.jouerTour(mJoueurs);
+                Joueur jWin = j.determinerVainqueur();
+                jWin.setPremier(true);
+                System.out.println("Le vainqueur du pli est "+jWin.getNom());
+                j.setNbPlis(j.getNbPlis()+1);
+            }
+            j.compterPoints(mJoueurs);
+            for(int k = 0;k<mJoueurs.size();k++){
+                if(mJoueurs.get(k).getNbPoints() > maxPoints){
+                    maxPoints = mJoueurs.get(k).getNbPoints();
+                }
+            }
+            i++;
+        }
+    }
+}

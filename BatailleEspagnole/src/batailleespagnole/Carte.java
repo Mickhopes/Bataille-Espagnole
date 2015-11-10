@@ -3,9 +3,10 @@ package batailleespagnole;
 // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
 // #[regen=yes,id=DCE.6384B198-9A51-156D-F380-21276E467CE3]
 // </editor-fold> 
-public class Carte implements Comparable{
-    
-    static enum TypeOrdre{
+public class Carte implements Comparable {
+
+    static enum TypeOrdre {
+
         AS, TROIS, ROI, DAME, CAVALIER, DIX, NEUF, HUIT, SEPT, SIX, CINQ, QUATRE, DEUX;
     }
 
@@ -20,25 +21,25 @@ public class Carte implements Comparable{
     private int valeur;
 
     private TypeFamille famille;
-   
-    public Carte(TypeOrdre ordre, TypeFamille famille){
+
+    public Carte(TypeOrdre ordre, TypeFamille famille) {
         this.ordre = ordre;
         this.famille = famille;
-        switch(ordre){
+        switch (ordre) {
             case AS:
-                this.valeur=11;
+                this.valeur = 11;
                 break;
             case TROIS:
-                this.valeur=10;
+                this.valeur = 10;
                 break;
             case ROI:
-                this.valeur=4;
+                this.valeur = 4;
                 break;
             case DAME:
-                this.valeur=3;
+                this.valeur = 3;
                 break;
             case CAVALIER:
-                this.valeur=2;
+                this.valeur = 2;
                 break;
             case DIX:
             case NEUF:
@@ -48,7 +49,7 @@ public class Carte implements Comparable{
             case CINQ:
             case QUATRE:
             case DEUX:
-                this.valeur=0;
+                this.valeur = 0;
                 break;
             default:
                 System.err.println("Erreur : ordre de carte inexistant");
@@ -58,28 +59,28 @@ public class Carte implements Comparable{
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,regenBody=yes,id=DCE.4B0892EA-7CCC-BD9C-0057-36BCE26BA1F5]
     // </editor-fold> 
-    public TypeOrdre getOrdre () {
+    public TypeOrdre getOrdre() {
         return ordre;
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,regenBody=yes,id=DCE.AFF1BB55-8CB5-1724-8640-68D544841CB7]
     // </editor-fold> 
-    public void setOrdre (TypeOrdre val) {
+    public void setOrdre(TypeOrdre val) {
         this.ordre = val;
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,regenBody=yes,id=DCE.B1A3DC70-FE6B-0E95-DB5D-D9472652FCAF]
     // </editor-fold> 
-    public int getValeur () {
+    public int getValeur() {
         return valeur;
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,regenBody=yes,id=DCE.1F2E7405-F0A5-31D5-43FD-4A200F91DABE]
     // </editor-fold> 
-    public void setValeur (int val) {
+    public void setValeur(int val) {
         this.valeur = val;
     }
 
@@ -90,16 +91,22 @@ public class Carte implements Comparable{
     public void setFamille(TypeFamille famille) {
         this.famille = famille;
     }
-    
+
     @Override
-    public int compareTo(Object o){
-        if (((Carte)o).getValeur() > this.valeur){
+    public int compareTo(Object o) {
+        if (((Carte) o).getValeur() > this.valeur) {
             return -1;
-        }
-        else if(((Carte)o).getValeur() < this.valeur){
+        } else if (((Carte) o).getValeur() < this.valeur) {
             return 1;
         }
         return 0;
     }
+    
+    @Override
+    public String toString(){
+        String s = "";
+        s= ordre.toString()+" de "+famille.toString();
+        
+        return s;
+    }
 }
-
