@@ -35,6 +35,7 @@ public class Jeu {
         for (int i = 0; i < joueursPartie.size(); i++) {
             pliActuel.put(joueursPartie.get(i), null);
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
@@ -129,13 +130,14 @@ public class Jeu {
         for (Entry<Joueur, Carte> e : pliActuel.entrySet()) {
             if (e.getKey().isPremier()) {
                 famillePremier = e.getValue().getFamille();
+                /* On remet à false puisqu'on a détecté la famille demandée */
+                e.getKey().setPremier(false);
             }
         }
         /* Pour chaque couple de la table de hachage du pli actuel */
         for (Entry<Joueur, Carte> e : pliActuel.entrySet()) {
             /* si la carte actuelle est un atout */
             if (e.getValue().getFamille().equals(atout)) {
-
                 /* Si la carte a un ordre plus grand que le max actuel */
                 if (e.getValue().getOrdre().compareTo(max) >= 0) {
                     /* On récupère le joueur potentiellement gagnant et on continue de tester les cartes */
@@ -144,7 +146,8 @@ public class Jeu {
                     /* On indique ici qu'une carte atout a été jouée donc les autres ne comptent pas */
                     maxAtout = true;
                 }
-            } /* si la carte actuelle n'est pas un atout */ else {
+            } /* si la carte actuelle n'est pas un atout */ 
+            else {
                 /* Si un atout n'a pas été joué */
                 if (!maxAtout) {
                     /* Si la famille de la carte actuelle qu'on teste correspond à la famille de la première carte jouée */
@@ -159,7 +162,9 @@ public class Jeu {
                 }
             }
         }
+        /* On vide le pli actuel */
         pliActuel.clear();
+        
         return jMax;
     }
 
@@ -175,13 +180,14 @@ public class Jeu {
         /* On récupère l'index du premier à jouer */
         for (i = 0; i < joueursPartie.size() && !joueursPartie.get(i).isPremier(); i++) {
         }
-        joueursPartie.get(i).setPremier(false);
         while (count < joueursPartie.size()) {
-            /* On affiche le contenu du pli */
-            afficherPliActuel();
-            
+            System.out.println("");
             /* On affiche le nom du joueur qui doit jouer */
             System.out.println("==Joueur "+joueursPartie.get(i).getNom()+"==");
+            /* On affiche le contenu du pli */
+            afficherPliActuel();
+            System.out.println("");
+            
             System.out.println("====Cartes actuelles====");
             ArrayList<Carte> cartesEnMain = joueursPartie.get(i).getCartesEnMain();
 
@@ -205,6 +211,9 @@ public class Jeu {
             /* On ajoute au pli la carte du joueur */
             pliActuel.put(joueursPartie.get(i), c);
            
+            /* On fait piocher notre joueur ensuite */         
+            c = joueursPartie.get(i).piocher(tasDeCartes);
+            System.out.println(joueursPartie.get(i).getNom()+" a pioché : "+c.getOrdre() + " de "+c.getFamille());
             i++;
             count++;
 
@@ -226,10 +235,15 @@ public class Jeu {
     }
     
     public void afficherPliActuel(){
-        System.out.println("Cartes posées :");
+        System.out.println("=== Cartes du pli actuel === ");
         for (Entry<Joueur, Carte> e : pliActuel.entrySet()){         
             if(e.getValue() != null){
-                System.out.println(e.getKey().getNom() + "a posé : "+e.getValue());
+                if(e.getKey().isPremier()){
+                    System.out.println("(PREMIER)Joueur "+e.getKey().getNom() + " => : "+e.getValue());
+                }
+                else{
+                    System.out.println("Joueur "+e.getKey().getNom() + " => : "+e.getValue());
+                }
             }
         }
         System.out.println("");

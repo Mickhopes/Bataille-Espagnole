@@ -39,7 +39,7 @@ public class BatailleEspagnole {
 
                 Partie p = new Partie(nbJoueurs, nbJeuxMax, nbPtsMax);
                 for (int i = 0; i < nbJoueurs; i++) {
-                    System.out.println("Nom du joueur n°" + i);
+                    System.out.println("Nom du joueur n°" + (i+1));
                     String nom = LectureClavier.lireChaine();
                     p.ajoutJoueur(new Joueur(nom));
                 }
