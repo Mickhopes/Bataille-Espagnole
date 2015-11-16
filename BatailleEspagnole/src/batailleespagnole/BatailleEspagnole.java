@@ -13,7 +13,8 @@ public class BatailleEspagnole {
 
     public static void menu() {
         System.out.println("==========Menu Principal===========");
-        System.out.println("-1-Nouvelle Partie");
+        System.out.println("-1-Nouvelle Partie (JcJ)");
+        System.out.println("-2- Nouvelle Partie (JcE)");
     }
 
     /**
@@ -44,6 +45,8 @@ public class BatailleEspagnole {
                     p.ajoutJoueur(new Joueur(nom));
                 }
                 p.lancerPartie();
+            case 2:
+                
             default:
                 break;
         }
