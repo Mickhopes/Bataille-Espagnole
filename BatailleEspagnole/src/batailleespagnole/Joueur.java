@@ -131,6 +131,13 @@ public class Joueur {
     
     
 
+    @Override
+    public boolean equals(Object o){
+        if(((Joueur)o).getNom() == this.nom && ((Joueur)o).isIA() == this.IA)
+                return true;
+        return false;
+    }
+    
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.1DAF6847-A28B-2D0E-5550-AA504F96E002]
     // </editor-fold> 

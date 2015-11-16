@@ -269,7 +269,7 @@ public class Jeu {
     public Carte jouerIA(Joueur j){
         ArrayList<Carte> cartesEnMain = j.getCartesEnMain();
         /* S'il y a 0 cartes sur le tapis */
-        if(pliActuel.size() == 0){
+        if(pliActuel.isEmpty()){
             /* On récupère un nombre aléatoire entre 0 et le nombre de cartes max du joueur */
             int max = j.getCartesEnMain().size();
             int rand = 0 + (int)(Math.random() * ((max - 0) + 1));
@@ -293,6 +293,7 @@ public class Jeu {
                 ArrayList<Carte> cartesPlusFortes = new ArrayList<>();
                 ArrayList<Carte> cartesPlusFaibles = new ArrayList<>();
                 ArrayList<Carte> cartesQuelconques = new ArrayList<>();
+                ArrayList<Carte> cartesAtouts = new ArrayList<>();
                 for(int i = 0;i<cartesEnMain.size();i++){
                     // Si la carte actuelle est de la même famille que la première famille */
                     if(cartesEnMain.get(i).getFamille() == famillePremier){
@@ -300,14 +301,21 @@ public class Jeu {
                         if(cartesEnMain.get(i).getOrdre().compareTo(premier.getOrdre()) >= 0){
                             cartesPlusFortes.add(cartesEnMain.get(i));
                         }
-                        /* Sinon on joue la carte la plus faible au pif */
+                        /* Sinon c'est une carte plus faible de la même famille */
                         else{
                             cartesPlusFaibles.add(cartesEnMain.get(i));
                         } 
                     }
                     /* Si la carte actuelle n'est pas de la même famille */
                     else{
-                        cartesQuelconques.add(cartesEnMain.get(i));
+                        /* On regarde si c'est un atout */
+                        if(cartesEnMain.get(i).getFamille().equals(this.atout)){
+                            cartesAtouts.add(cartesEnMain.get(i));
+                        }
+                        /* Sinon si c'est une carte quelconque */
+                        else{
+                            cartesQuelconques.add(cartesEnMain.get(i));
+                        }
                     }
                 }
               
@@ -335,12 +343,24 @@ public class Jeu {
                         }
                     }
                     
-                    /* Sinon il n'y a pas de cartes de même famille : on joue la plus faible carte quelconque */
+                    /* Sinon il n'y a pas de cartes de même famille */
                     else{
-                        for(int i = 0;i<cartesQuelconques.size();i++){
-                            if(cartesQuelconques.get(i).getOrdre().compareTo(min) <= 0){
-                                min = cartesQuelconques.get(i).getOrdre();
-                                c = cartesQuelconques.get(i);
+                        /* Est-ce qu'on a des atouts à jouer */
+                        if(!cartesAtouts.isEmpty()){
+                            for(int i = 0;i<cartesAtouts.size();i++){
+                                if(cartesAtouts.get(i).getOrdre().compareTo(min) <= 0){
+                                    min = cartesAtouts.get(i).getOrdre();
+                                    c = cartesAtouts.get(i);
+                                }
+                            }
+                        }
+                        /* Sinon, on joue une carte quelconque */
+                        else{
+                            for(int i = 0;i<cartesQuelconques.size();i++){
+                                if(cartesQuelconques.get(i).getOrdre().compareTo(min) <= 0){
+                                    min = cartesQuelconques.get(i).getOrdre();
+                                    c = cartesQuelconques.get(i);
+                                }
                             }
                         }
                     }
@@ -350,6 +370,106 @@ public class Jeu {
             }
             /* Sinon il y a plus d'une carte sur le pli actuel */
             else{
+                /* On détermine quel est le joueur qui gagne le pli pour l'instant */
+                Joueur jWin = determinerVainqueur();
+                Carte cWin = null;
+                TypeFamille fPremier = null;
+                ArrayList<Carte> cartesPlusFortes = new ArrayList<>();
+                ArrayList<Carte> cartesPlusFaibles = new ArrayList<>();
+                ArrayList<Carte> cartesQuelconques = new ArrayList<>();
+                ArrayList<Carte> cartesAtouts = new ArrayList<>();
+                
+                for (Entry<Joueur, Carte> e : pliActuel.entrySet()) {              
+                    /* Si on trouve le joueur qui a gagné */
+                    if (e.getKey().equals(jWin)) {
+                        /* On récupère sa carte */
+                        cWin = e.getValue();
+                    }
+                    /* On cherche la carte jouée en premier */
+                    if(e.getKey().isPremier()){
+                        /* On récupère la famille de celle-ci */
+                        fPremier = e.getValue().getFamille();
+                    }
+                }
+                
+                /* Pour toutes les cartes en main */
+                /* On les teste par rapport à la première famille jouée */
+                for(int i = 0;i<cartesEnMain.size();i++){
+                    // Si la carte actuelle est de la même famille que la première famille */
+                    if(cartesEnMain.get(i).getFamille() == fPremier){
+                        /* Si la carte actuelle de la même famille est plus forte */
+                        if(cartesEnMain.get(i).getOrdre().compareTo(premier.getOrdre()) >= 0){
+                            cartesPlusFortes.add(cartesEnMain.get(i));
+                        }
+                        /* Sinon c'est une carte plus faible de la même famille */
+                        else{
+                            cartesPlusFaibles.add(cartesEnMain.get(i));
+                        } 
+                    }
+                    /* Si la carte actuelle n'est pas de la même famille */
+                    else{
+                        /* On regarde si c'est un atout */
+                        if(cartesEnMain.get(i).getFamille().equals(this.atout)){
+                            cartesAtouts.add(cartesEnMain.get(i));
+                        }
+                        /* Sinon si c'est une carte quelconque */
+                        else{
+                            cartesQuelconques.add(cartesEnMain.get(i));
+                        }
+                    }
+                }
+                
+                /* On doit maintenant comparer nos cartes avec la carte potentiellement gagnante */
+              
+                Carte.TypeOrdre min = Carte.TypeOrdre.AS;
+                Carte c = null;
+                /* S'il y a des cartes plus fortes à jouer que la première */
+                if(!cartesPlusFortes.isEmpty()){
+                    /* On cherche le min des cartes les plus fortes */
+                    for(int i = 0;i<cartesPlusFortes.size();i++){
+                        if(cartesPlusFortes.get(i).getOrdre().compareTo(min) <= 0){
+                            min = cartesPlusFortes.get(i).getOrdre();
+                            c = cartesPlusFortes.get(i);
+                        }
+                    }
+                }
+                /* Sinon on prend le min des autres cartes */
+                else{
+                    /* S'il y a des cartes de même famille plus faibles */
+                    if(!cartesPlusFaibles.isEmpty()){
+                        for(int i = 0;i<cartesPlusFaibles.size();i++){
+                            if(cartesPlusFaibles.get(i).getOrdre().compareTo(min) <= 0){
+                                min = cartesPlusFaibles.get(i).getOrdre();
+                                c = cartesPlusFaibles.get(i);
+                            }
+                        }
+                    }
+                    
+                    /* Sinon il n'y a pas de cartes de même famille */
+                    else{
+                        /* Est-ce qu'on a des atouts à jouer */
+                        if(!cartesAtouts.isEmpty()){
+                            for(int i = 0;i<cartesAtouts.size();i++){
+                                if(cartesAtouts.get(i).getOrdre().compareTo(min) <= 0){
+                                    min = cartesAtouts.get(i).getOrdre();
+                                    c = cartesAtouts.get(i);
+                                }
+                            }
+                        }
+                        /* Sinon, on joue une carte quelconque */
+                        else{
+                            for(int i = 0;i<cartesQuelconques.size();i++){
+                                if(cartesQuelconques.get(i).getOrdre().compareTo(min) <= 0){
+                                    min = cartesQuelconques.get(i).getOrdre();
+                                    c = cartesQuelconques.get(i);
+                                }
+                            }
+                        }
+                    }
+                }
+                }
+                
+                
                 
             }
         }
