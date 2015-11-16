@@ -288,16 +288,69 @@ public class Jeu {
                     premier = e.getValue();
                 }
             }
+            /* S'il n'y a qu'une carte dans le pli actuel */
             if(pliActuel.size() == 1){
+                ArrayList<Carte> cartesPlusFortes = new ArrayList<>();
+                ArrayList<Carte> cartesPlusFaibles = new ArrayList<>();
+                ArrayList<Carte> cartesQuelconques = new ArrayList<>();
                 for(int i = 0;i<cartesEnMain.size();i++){
                     // Si la carte actuelle est de la même famille que la première famille */
                     if(cartesEnMain.get(i).getFamille() == famillePremier){
                         /* Si la carte actuelle de la même famille est plus forte */
                         if(cartesEnMain.get(i).getOrdre().compareTo(premier.getOrdre()) >= 0){
-                            return cartesEnMain.get(i);
+                            cartesPlusFortes.add(cartesEnMain.get(i));
+                        }
+                        /* Sinon on joue la carte la plus faible au pif */
+                        else{
+                            cartesPlusFaibles.add(cartesEnMain.get(i));
+                        } 
+                    }
+                    /* Si la carte actuelle n'est pas de la même famille */
+                    else{
+                        cartesQuelconques.add(cartesEnMain.get(i));
+                    }
+                }
+              
+                Carte.TypeOrdre min = Carte.TypeOrdre.AS;
+                Carte c = null;
+                /* S'il y a des cartes plus fortes à jouer que la première */
+                if(!cartesPlusFortes.isEmpty()){
+                    /* On cherche le min des cartes les plus fortes */
+                    for(int i = 0;i<cartesPlusFortes.size();i++){
+                        if(cartesPlusFortes.get(i).getOrdre().compareTo(min) <= 0){
+                            min = cartesPlusFortes.get(i).getOrdre();
+                            c = cartesPlusFortes.get(i);
                         }
                     }
                 }
+                /* Sinon on prend le min des autres cartes */
+                else{
+                    /* S'il y a des cartes de même famille plus faibles */
+                    if(!cartesPlusFaibles.isEmpty()){
+                        for(int i = 0;i<cartesPlusFaibles.size();i++){
+                            if(cartesPlusFaibles.get(i).getOrdre().compareTo(min) <= 0){
+                                min = cartesPlusFaibles.get(i).getOrdre();
+                                c = cartesPlusFaibles.get(i);
+                            }
+                        }
+                    }
+                    
+                    /* Sinon il n'y a pas de cartes de même famille : on joue la plus faible carte quelconque */
+                    else{
+                        for(int i = 0;i<cartesQuelconques.size();i++){
+                            if(cartesQuelconques.get(i).getOrdre().compareTo(min) <= 0){
+                                min = cartesQuelconques.get(i).getOrdre();
+                                c = cartesQuelconques.get(i);
+                            }
+                        }
+                    }
+                }
+                /* On renvoit la carte qu'on veut jouer */
+                return c;
+            }
+            /* Sinon il y a plus d'une carte sur le pli actuel */
+            else{
+                
             }
         }
         
