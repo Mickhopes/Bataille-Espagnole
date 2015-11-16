@@ -44,20 +44,6 @@ public class Joueur {
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.ADC6B0D9-0711-4AF3-7E77-6603908D43D9]
-    // </editor-fold> 
-    public ArrayList<Carte> getCarte() {
-        return cartesEnMain;
-    }
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.D7E31F2A-853B-CCCC-7416-2CE4F29D3EA3]
-    // </editor-fold> 
-    public void setCarte(ArrayList<Carte> val) {
-        this.cartesEnMain = val;
-    }
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,regenBody=yes,id=DCE.5B763AA0-337C-FCC8-7B08-FF7C4E142B78]
     // </editor-fold> 
     public Partie getPartie() {
@@ -147,7 +133,7 @@ public class Joueur {
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.D5451F0E-CF8C-0CD3-7590-145DAA5B4521]
     // </editor-fold> 
-    public void piocher(LinkedList<Carte> tasDeCartes) {
+    public Carte piocher(LinkedList<Carte> tasDeCartes) {
         /* Si le tas est vide */
         if (tasDeCartes.isEmpty()) {
             /* le jeu est fini */
@@ -159,8 +145,9 @@ public class Joueur {
             /* On lui donne rien */
             /* ajouter exceptions */
         }
-
-        cartesEnMain.add(tasDeCartes.pop());
+        Carte c = tasDeCartes.pop();
+        cartesEnMain.add(c);
+        return c;
     }
 
 }

@@ -7,7 +7,7 @@ public class Carte implements Comparable {
 
     static enum TypeOrdre {
 
-        AS, TROIS, ROI, DAME, CAVALIER, DIX, NEUF, HUIT, SEPT, SIX, CINQ, QUATRE, DEUX;
+        DEUX, QUATRE, CINQ, SIX, SEPT, HUIT, NEUF, DIX, CAVALIER, DAME, ROI, TROIS, AS;
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
@@ -94,12 +94,7 @@ public class Carte implements Comparable {
 
     @Override
     public int compareTo(Object o) {
-        if (((Carte) o).getValeur() > this.valeur) {
-            return -1;
-        } else if (((Carte) o).getValeur() < this.valeur) {
-            return 1;
-        }
-        return 0;
+        return this.getOrdre().compareTo(((Carte)o).getOrdre());
     }
     
     @Override
