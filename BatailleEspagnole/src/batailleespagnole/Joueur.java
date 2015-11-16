@@ -19,6 +19,8 @@ public class Joueur {
     private int nbPoints;
 
     private boolean premier;
+    
+    private boolean IA;
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.BE6D8EFC-C7C8-5E18-76BD-752E80A886A7]
@@ -31,16 +33,14 @@ public class Joueur {
     // #[regen=yes,id=DCE.B1CC00A2-ECB6-67A4-6437-8C82AF977CFB]
     // </editor-fold> 
     private Partie mPartie;
-
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.FE59E101-615A-2947-7EA1-96F1F50371BE]
-    // </editor-fold> 
-    public Joueur(String nom) {
+    
+    public Joueur(String nom, boolean IA) {
         this.nom = nom;
         this.nbPoints = 0;
         this.premier = false;
         this.cartesEnMain = new ArrayList<>();
         this.plisGagnes = new ArrayList<>();
+        this.IA = IA;
     }
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
@@ -120,6 +120,16 @@ public class Joueur {
     public void setmPartie(Partie mPartie) {
         this.mPartie = mPartie;
     }
+
+    public boolean isIA() {
+        return IA;
+    }
+
+    public void setIA(boolean IA) {
+        this.IA = IA;
+    }
+    
+    
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.1DAF6847-A28B-2D0E-5550-AA504F96E002]

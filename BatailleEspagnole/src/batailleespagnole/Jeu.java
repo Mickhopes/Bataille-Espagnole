@@ -188,35 +188,52 @@ public class Jeu {
             afficherPliActuel();
             System.out.println("");
             
-            System.out.println("====Cartes actuelles====");
+            
             ArrayList<Carte> cartesEnMain = joueursPartie.get(i).getCartesEnMain();
+            
+            /* Si le joueur actuel est une IA */
+            if(joueursPartie.get(i).equals(i)){
+                /* On récupère la carte déterminée par l'algo d'IA */
+                Carte c = joueursPartie.get(i).jouer(jouerIA(joueursPartie.get(i)));
+                
+                /* On ajoute au pli la carte du joueur */
+                pliActuel.put(joueursPartie.get(i), c);
 
-            /* On affiche les cartes en main du joueur */
-            for (int j = 0; j < cartesEnMain.size(); j++) {
-                System.out.print(j + 1 + " - ");
-                System.out.println(cartesEnMain.get(j));
+                /* On fait piocher notre joueur ensuite */         
+                c = joueursPartie.get(i).piocher(tasDeCartes);
             }
-            System.out.println("=========================");
+            /* Sinon */
+            else{
+        
+                System.out.println("====Cartes actuelles====");
+                /* On affiche les cartes en main du joueur */
+                for (int j = 0; j < cartesEnMain.size(); j++) {
+                    System.out.print(j + 1 + " - ");
+                    System.out.println(cartesEnMain.get(j));
+                }
+                System.out.println("=========================");
 
-            /* On demande au joueur quelle carte il veut jouer */
-            int choix;
+                /* On demande au joueur quelle carte il veut jouer */
+                int choix;
 
-            do {
-                choix = LectureClavier.lireEntier("Quelle carte voulez-vous jouer ?");
-            } while (choix < 1 && choix > 3);
+                do {
+                    choix = LectureClavier.lireEntier("Quelle carte voulez-vous jouer ?");
+                } while (choix < 1 && choix > 3);
 
-            /* Appel à la fonction jouer */
-            Carte c = joueursPartie.get(i).jouer(cartesEnMain.get(choix - 1));
+                /* Appel à la fonction jouer */
+                Carte c = joueursPartie.get(i).jouer(cartesEnMain.get(choix - 1));
 
-            /* On ajoute au pli la carte du joueur */
-            pliActuel.put(joueursPartie.get(i), c);
-           
-            /* On fait piocher notre joueur ensuite */         
-            c = joueursPartie.get(i).piocher(tasDeCartes);
-            System.out.println(joueursPartie.get(i).getNom()+" a pioché : "+c.getOrdre() + " de "+c.getFamille());
+                /* On ajoute au pli la carte du joueur */
+                pliActuel.put(joueursPartie.get(i), c);
+
+                /* On fait piocher notre joueur ensuite */         
+                c = joueursPartie.get(i).piocher(tasDeCartes);
+                System.out.println(joueursPartie.get(i).getNom()+" a pioché : "+c.getOrdre() + " de "+c.getFamille());
+            } /* Fin du jouer pour vrai joueur */
+            
             i++;
             count++;
-
+            
             /* On repart de 0 si on est à la fin et qu'on n'a toujours pas fait jouer tout le monde */
             if (i == joueursPartie.size()) {
                 i = 0;
@@ -247,5 +264,42 @@ public class Jeu {
             }
         }
         System.out.println("");
+    }
+    
+    public Carte jouerIA(Joueur j){
+        ArrayList<Carte> cartesEnMain = j.getCartesEnMain();
+        /* S'il y a 0 cartes sur le tapis */
+        if(pliActuel.size() == 0){
+            /* On récupère un nombre aléatoire entre 0 et le nombre de cartes max du joueur */
+            int max = j.getCartesEnMain().size();
+            int rand = 0 + (int)(Math.random() * ((max - 0) + 1));
+            
+            return cartesEnMain.get(rand);
+        }
+        /* Sinon s'il y a une carte sur le tapis */
+        else{
+            TypeFamille famillePremier = null;
+            Carte premier = null;
+                /* On fait un premier parcours de la table de hachage pour trouver quel est le joueur
+             qui a posé la première carte et quelle est la famille de cette carte */
+            for (Entry<Joueur, Carte> e : pliActuel.entrySet()) {
+                if (e.getKey().isPremier()) {
+                    famillePremier = e.getValue().getFamille();
+                    premier = e.getValue();
+                }
+            }
+            if(pliActuel.size() == 1){
+                for(int i = 0;i<cartesEnMain.size();i++){
+                    // Si la carte actuelle est de la même famille que la première famille */
+                    if(cartesEnMain.get(i).getFamille() == famillePremier){
+                        /* Si la carte actuelle de la même famille est plus forte */
+                        if(cartesEnMain.get(i).getOrdre().compareTo(premier.getOrdre()) >= 0){
+                            return cartesEnMain.get(i);
+                        }
+                    }
+                }
+            }
+        }
+        
     }
 }
