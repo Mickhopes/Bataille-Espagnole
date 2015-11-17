@@ -1,6 +1,7 @@
 package batailleespagnole;
 
 import java.util.ArrayList;
+import java.util.Map.Entry;
 
 // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
 // #[regen=yes,id=DCE.82ECEC05-F078-B9D4-40D2-A7DE9C6BBD5E]
@@ -128,28 +129,65 @@ public class Partie {
 
     public void lancerPartie() {
         mJoueurs.get(0).setPremier(true);
-        int i = 0, maxPoints = 0;
-        while(i<nbJeux || maxPoints < nbPointsMax) {
+        int i = 0, max = 0;
+        boolean cond;
+        if (nbJeux != 0) {
+            cond = i < nbJeux;
+        } else {
+            cond = max < nbPointsMax;
+        }
+        while (cond) {
             Jeu j = new Jeu(mJoueurs);
             j.creerPaquet();
             j.melangerCartes();
             j.distribuer(mJoueurs);
-            j.determinerAtout();
+            j.determinerAtout(mJoueurs);
             /* appel à la fonction qui fait jouer les joueurs */
-            while (!(j.getTasDeCartes().isEmpty())) {
+            while (!j.finJeu(mJoueurs)) {
                 j.jouerTour(mJoueurs);
                 Joueur jWin = j.determinerVainqueur();
+
+                /* On remet les attributs premier des joueurs à false */
+                for (int k = 0; k < mJoueurs.size(); k++) {
+                    mJoueurs.get(k).setPremier(false);
+                }
                 jWin.setPremier(true);
-                System.out.println("Le vainqueur du pli est "+jWin.getNom());
-                j.setNbPlis(j.getNbPlis()+1);
+
+                System.out.println("Le vainqueur du pli n°" + ((j.getNbPlis()) + 1) + " est " + jWin.getNom());
+                j.setNbPlis(j.getNbPlis() + 1);
+                for (Entry<Joueur, Carte> e : j.getPliActuel().entrySet()) {
+                    jWin.getPlisGagnes().add(e.getValue());
+                }
+                /* On vide le pli actuel */
+                j.getPliActuel().clear();
             }
             j.compterPoints(mJoueurs);
-            for(int k = 0;k<mJoueurs.size();k++){
-                if(mJoueurs.get(k).getNbPoints() > maxPoints){
-                    maxPoints = mJoueurs.get(k).getNbPoints();
+            Joueur jWin = null;
+            for (int k = 0; k < mJoueurs.size(); k++) {
+                if (mJoueurs.get(k).getNbPoints() > max) {
+                    max = mJoueurs.get(k).getNbPoints();
+                    jWin = mJoueurs.get(k);
                 }
             }
+            tableauScores();
+            System.out.println("Le vainqueur du jeu n°" + (i + 1) + " est " + jWin.getNom());
+
+            /* Iteration de la boucle */
             i++;
+
+            /* On reteste la condition */
+            if (nbJeux != 0) {
+                cond = i < nbJeux;
+            } else {
+                cond = max < nbPointsMax;
+            }
+        }
+    }
+
+    public void tableauScores() {
+        System.out.println("");
+        for (int i = 0; i < mJoueurs.size(); i++) {
+            System.out.println("<" + mJoueurs.get(i).getNom() + "> => " + mJoueurs.get(i).getNbPoints() + " pts");
         }
     }
 }

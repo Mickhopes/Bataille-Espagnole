@@ -19,7 +19,7 @@ public class Joueur {
     private int nbPoints;
 
     private boolean premier;
-    
+
     private boolean IA;
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
@@ -33,7 +33,7 @@ public class Joueur {
     // #[regen=yes,id=DCE.B1CC00A2-ECB6-67A4-6437-8C82AF977CFB]
     // </editor-fold> 
     private Partie mPartie;
-    
+
     public Joueur(String nom, boolean IA) {
         this.nom = nom;
         this.nbPoints = 0;
@@ -88,7 +88,7 @@ public class Joueur {
     public void ajoutPoints(int val) {
         this.nbPoints += val;
     }
-    
+
     public boolean isPremier() {
         return premier;
     }
@@ -128,22 +128,21 @@ public class Joueur {
     public void setIA(boolean IA) {
         this.IA = IA;
     }
-    
-    
 
     @Override
-    public boolean equals(Object o){
-        if(((Joueur)o).getNom() == this.nom && ((Joueur)o).isIA() == this.IA)
-                return true;
+    public boolean equals(Object o) {
+        if (((Joueur) o).getNom().equals(this.nom) && ((Joueur) o).isIA() == this.IA) {
+            return true;
+        }
         return false;
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.1DAF6847-A28B-2D0E-5550-AA504F96E002]
     // </editor-fold> 
     public Carte jouer(Carte carte) {
         cartesEnMain.remove(carte);
-        
+
         return carte;
     }
 

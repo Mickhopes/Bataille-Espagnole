@@ -94,14 +94,17 @@ public class Carte implements Comparable {
 
     @Override
     public int compareTo(Object o) {
-        return this.getOrdre().compareTo(((Carte)o).getOrdre());
+        if (((Carte) o).getFamille() == this.famille) {
+            return this.getOrdre().compareTo(((Carte) o).getOrdre());
+        }
+        return -1;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         String s = "";
-        s= ordre.toString()+" de "+famille.toString();
-        
+        s = ordre.toString() + " de " + famille.toString();
+
         return s;
     }
 }
