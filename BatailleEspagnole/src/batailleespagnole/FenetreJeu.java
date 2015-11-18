@@ -217,7 +217,37 @@ public class FenetreJeu {
         itemRegle.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                JOptionPane.showMessageDialog(panneau, "TODO", "Règles du jeu", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(panneau, "----Bataille Espagnole----\n"
+                        + "La bataille espagnole est un jeu de carte qui se joue de 2 à 4 joueurs. Les cartes sont de 4\n" +
+"familles différentes : l’or, l’épée, le bâton et la coupe. L’ordre des cartes dans une famille\n" +
+"est : As, 3, Roi, Dame, Cavalier, 10, 9, 8, 7, 6, 5, 4, 3, 2\n\n"
+                        + "Une partie est constituée de plusieurs “jeux” qui permettent aux joueurs de marquer des\n" +
+"points. Le gagnant étant celui qui a le plus de points lorsque la partie se termine. Une partie\n" +
+"se joue soit en un nombre de jeux fixé par les joueurs, soit par un nombre de points à\n" +
+"atteindre (exemple : fin de la partie lorsqu’un joueur a atteint les 300 points).\n"
+                        + "A chaque jeu, une famille est désignée comme étant l’atout. Cette famille a pour particularité\n" +
+"d’être plus forte que les autres, c’est à dire que n’importe quelle carte de la famille atout bat\n" +
+"n’importe quelle carte d’une des trois autres familles.\n"
+                        + "Le choix de la famille atout d’un jeu se passe de la manière suivante : après distribution de 3\n" +
+"cartes à chaque joueur, la première carte du tas de cartes restantes est retournée, la famille\n" +
+"à laquelle elle appartient est désignée comme atout si l’un des joueurs (interrogés dans le\n" +
+"sens des aiguilles d’une montre) le souhaite. Si personne ne souhaite la famille de la carte\n" +
+"comme atout, les joueurs peuvent en choisir une autre (là aussi dans l’ordre des aiguilles\n" +
+"d’une montre). La carte retournée est placée sous le tas pour être la dernière carte piochée.\n\n"
+                        + "Chaque joueur possède 3 cartes (qu’il voit). A chaque tour, il joue une de ses 3 cartes et en\n" +
+"pioche une autre dans le tas de cartes non distribuées (tant qu’il en reste dans le tas). Une\n" +
+"fois que tous les joueurs ont joué leur tour, la carte la plus forte remporte la bataille et donc\n" +
+"le joueur qui l’a jouée prend les cartes du pli (sa carte et celles des autres joueurs) et\n" +
+"commencera le tour suivant. Toutes les cartes remportées sont comptabilisée à la fin du jeu\n" +
+"(quand toutes les cartes auront été jouées).\n\n"
+                        + "Pour définir la carte la plus forte d’un pli :\n"
+                        + "\t- s’il" +
+"n’y a aucune carte de la famille atout, la carte la plus forte est celle la plus haute\n" +
+"dans l’ordre des cartes jouées parmi les cartes de la même famille que la 1ère carte\n" +
+"jouée\n"
+                        + "\t- s’il" +
+"y a au moins une carte de la famille atout, c’est la carte la plus haute dans l’ordre\n" +
+"parmi les cartes de la famille atout.", "Règles du jeu", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
@@ -225,7 +255,13 @@ public class FenetreJeu {
         itemCarac.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                JOptionPane.showMessageDialog(panneau, "TODO");
+                JOptionPane.showMessageDialog(panneau, "\t\t----Valeurs des cartes----\n\n"
+                        + "As : 11 points\n"
+                        + "3 : 10 points\n"
+                        + "Roi : 4 points\n"
+                        + "Dame : 3 points\n"
+                        + "Cavalier : 2 points\n"
+                        + "10 à 2 : 0 points");
             }
         });
 
@@ -233,7 +269,7 @@ public class FenetreJeu {
         itemApropos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                JOptionPane.showMessageDialog(panneau, "Jeu développé par :\n-Mickaël Turnel\n-Line Pouvaret\n\nTODO", "A propos", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(panneau, "Jeu développé par :\n-Mickaël Turnel\n-Line Pouvaret\n\n", "A propos", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 

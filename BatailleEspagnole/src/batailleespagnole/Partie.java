@@ -1,7 +1,12 @@
 package batailleespagnole;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Map.Entry;
+import javax.imageio.ImageIO;
 
 // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
 // #[regen=yes,id=DCE.82ECEC05-F078-B9D4-40D2-A7DE9C6BBD5E]
@@ -31,6 +36,11 @@ public class Partie {
     // #[regen=yes,id=DCE.41806A56-6E71-2568-2CC1-3C00DF0D9BCB]
     // </editor-fold> 
     private ArrayList<Joueur> mJoueurs;
+    
+    /**
+     * L'image du tapis.
+     */
+    private static BufferedImage tapis;
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.99CAE846-9944-0EE3-736F-37812BED87D3]
@@ -126,7 +136,16 @@ public class Partie {
     public void supprJoueur(Joueur j) {
         mJoueurs.remove(j);
     }
-
+    
+    /**
+     * Charge toutes les images nécessaires au jeu.
+     *
+     * @throws IOException
+     */
+    public static void chargementImages() throws IOException {
+        tapis = ImageIO.read(new File("images/Tapis.png"));
+    }
+    
     public void lancerPartie() {
         mJoueurs.get(0).setPremier(true);
         int i = 0, max = 0;
@@ -189,5 +208,9 @@ public class Partie {
         for (int i = 0; i < mJoueurs.size(); i++) {
             System.out.println("<" + mJoueurs.get(i).getNom() + "> => " + mJoueurs.get(i).getNbPoints() + " pts");
         }
+    }
+    
+    public void toutDessiner(Graphics g) {
+        
     }
 }
