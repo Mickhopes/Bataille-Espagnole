@@ -211,6 +211,6 @@ public class Partie {
     }
     
     public void toutDessiner(Graphics g) {
-        
+        g.drawImage(tapis, 0, 0, null);
     }
 }
