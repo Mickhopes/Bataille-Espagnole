@@ -3,7 +3,7 @@ package batailleespagnole;
 // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
 // #[regen=yes,id=DCE.6384B198-9A51-156D-F380-21276E467CE3]
 // </editor-fold> 
-public class Carte implements Comparable {
+public class Carte implements Comparable<Carte> {
 
     static enum TypeOrdre {
 
@@ -93,9 +93,9 @@ public class Carte implements Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
-        if (((Carte) o).getFamille() == this.famille) {
-            return this.getOrdre().compareTo(((Carte) o).getOrdre());
+    public int compareTo(Carte c) {
+        if (c.getFamille() == this.famille) {
+            return this.getOrdre().compareTo(c.getOrdre());
         }
         return -1;
     }

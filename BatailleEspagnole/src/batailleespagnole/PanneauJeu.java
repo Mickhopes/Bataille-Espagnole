@@ -69,9 +69,39 @@ public class PanneauJeu extends JPanel implements MouseListener, MouseMotionList
      */
     public void nouvellePartie() {
         etat = Etat.EN_COURS;
-        /* Doit demander nombre de joueurs, nb de jeux max, points max, nom des joueurs PUIS LANCER PARTIE */
-        this.
-        over = null;
+        
+        int nbJeuxMax, nbPtsMax, nbJoueurs, nbIA;
+        do {
+            nbJoueurs = Integer.parseInt(JOptionPane.showInputDialog(this, "Combien de joueurs (2-4) au total ?", "Nombre de joueurs", JOptionPane.QUESTION_MESSAGE));
+        } while (nbJoueurs < 2 || nbJoueurs > 4);
+
+        do {
+            nbIA = Integer.parseInt(JOptionPane.showInputDialog(this, "Combien de joueurs Ordinateur (0-4) ?", "Nombre d'IA", JOptionPane.QUESTION_MESSAGE));
+        } while (nbIA < 0 || nbIA > 4);
+        do {
+            nbJeuxMax = Integer.parseInt(JOptionPane.showInputDialog(this, "Entrez un nombre de jeux maximum (0=infini)", "Nombre de jeux", JOptionPane.QUESTION_MESSAGE));
+            nbPtsMax = Integer.parseInt(JOptionPane.showInputDialog(this, "Entrez un nombre de points maximum (0=infini)", "Nombre de points", JOptionPane.QUESTION_MESSAGE));
+        } while (nbJeuxMax == 0 && nbPtsMax == 0);
+
+        Partie p = new Partie(nbJoueurs, nbJeuxMax, nbPtsMax);
+        int i;
+        /* On demande le nom des vrais joueurs et on les ajoute à la partie */
+        for (i = 0; i < nbJoueurs - nbIA; i++) {
+            String nom = (JOptionPane.showInputDialog(this, "Nom du joueur n°"+ (i+1), "Joueur n°"+(i+1), JOptionPane.QUESTION_MESSAGE));
+            //System.out.println("Nom du joueur n°" + (i + 1));
+            //String nom = LectureClavier.lireChaine();
+            p.ajoutJoueur(new Joueur(nom, false));
+        }
+
+        /* On crée le nombre de joueurs IA nécessaires */
+        for (int j = i; j < nbJoueurs; j++) {
+            //System.out.println("Nom du joueur ordinateur n°" + (j + 1));
+            p.ajoutJoueur(new Joueur("Joueur " + (j + 1), true));
+        }
+
+        p.lancerPartie();
+        
+        this.over = null;
         refresh();
     }
 
