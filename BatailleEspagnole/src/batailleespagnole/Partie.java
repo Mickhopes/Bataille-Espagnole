@@ -37,10 +37,7 @@ public class Partie {
     // </editor-fold> 
     private ArrayList<Joueur> mJoueurs;
     
-    /**
-     * L'image du tapis.
-     */
-    private static BufferedImage tapis;
+   
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.99CAE846-9944-0EE3-736F-37812BED87D3]
@@ -137,15 +134,6 @@ public class Partie {
         mJoueurs.remove(j);
     }
     
-    /**
-     * Charge toutes les images nécessaires au jeu.
-     *
-     * @throws IOException
-     */
-    public static void chargementImages() throws IOException {
-        tapis = ImageIO.read(new File("images/Tapis.png"));
-    }
-    
     public void lancerPartie() {
         mJoueurs.get(0).setPremier(true);
         int i = 0, max = 0;
@@ -211,6 +199,6 @@ public class Partie {
     }
     
     public void toutDessiner(Graphics g) {
-        g.drawImage(tapis, 0, 0, null);
+        
     }
 }

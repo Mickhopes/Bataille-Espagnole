@@ -4,7 +4,11 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -34,16 +38,30 @@ public class PanneauJeu extends JPanel implements MouseListener, MouseMotionList
      * La position sur laquelle la souris se trouve.
      */
     private Position over;
+     /**
+     * L'image du tapis.
+     */
+    private static BufferedImage tapis;
 
     /**
      * Constructeur par défaut de PanneauJeu.
      */
-    public PanneauJeu() {
+    public PanneauJeu() throws IOException {
         setPreferredSize(new Dimension(IConfig.LARGEUR, IConfig.HAUTEUR));
         addMouseListener(this);
         addMouseMotionListener(this);
         over = null;
         etat = Etat.EN_ATTENTE;
+        chargementImages();
+    }
+    
+    /**
+     * Charge toutes les images nécessaires au jeu.
+     *
+     * @throws IOException
+     */
+    public static void chargementImages() throws IOException {
+        tapis = ImageIO.read(new File("images/Tapis.png"));
     }
 
     /**
@@ -152,7 +170,7 @@ public class PanneauJeu extends JPanel implements MouseListener, MouseMotionList
      */
     @Override
     public void paintComponent(Graphics g) {
-        
+        g.drawImage(tapis, 0, 0, null);
     }
 
     /**

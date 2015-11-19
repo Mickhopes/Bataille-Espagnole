@@ -42,7 +42,7 @@ public class FenetreJeu {
      *
      * @see PanneauJeu
      */
-    private static void afficherMaFenetre() {
+    private static void afficherMaFenetre() throws IOException {
         // Création de la JFrame
         JFrame jframe = new JFrame();
         jframe.setTitle("Bataille Espagnole");
@@ -156,6 +156,7 @@ public class FenetreJeu {
                     //System.out.println("Nom du joueur ordinateur n°" + (j + 1));
                     p.ajoutJoueur(new Joueur("Joueur " + (j + 1), true));
                 }
+                
                 p.lancerPartie();
 
                 //panneau.nouvellePartie();
@@ -284,7 +285,7 @@ public class FenetreJeu {
      *
      * @param args
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         /*
         try {
             Carte.chargementImages();
