@@ -52,7 +52,7 @@ public class BatailleEspagnole {
                     System.out.println("Nom du joueur ordinateur n°" + (j + 1));
                     p.ajoutJoueur(new Joueur("Joueur " + (j + 1), true));
                 }
-                p.lancerPartie();
+                p.lancerPartieConsole();
             default:
                 break;
         }
