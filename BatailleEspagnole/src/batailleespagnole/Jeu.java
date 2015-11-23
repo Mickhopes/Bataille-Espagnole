@@ -207,6 +207,8 @@ public class Jeu {
                  System.out.println("=========================");
                  */
 
+                /* On met le tour vrai pour le joueur qui doit jouer */
+                joueursPartie.get(i).setTour(true);
                 /* On récupère la carte déterminée par l'algo d'IA */
                 Carte c = joueursPartie.get(i).jouer(jouerIA(joueursPartie.get(i)));
 
@@ -214,14 +216,24 @@ public class Jeu {
                 pliActuel.put(joueursPartie.get(i), c);
 
                 /* On affiche à nouveau le pli pour montrer ce qu'il a joué */
+                /* MODE CONSOLE */
                 afficherPliActuel();
-
+                /* MODE GRAPHIQUE */
+                /* ... */
+                
                 /* On fait piocher notre joueur ensuite */
                 if (!tasDeCartes.isEmpty()) {
                     c = joueursPartie.get(i).piocher(tasDeCartes);
                 }
+                
+                /* Quand il a fini de jouer on met le tour à faux */
+                joueursPartie.get(i).setTour(false);
             } /* Sinon */ else {
 
+                /* On met le tour vrai pour le joueur qui doit jouer */
+                joueursPartie.get(i).setTour(true);
+                
+                /* MODE CONSOLE */
                 System.out.println("====Cartes actuelles====");
                 /* On affiche les cartes en main du joueur */
                 for (int j = 0; j < cartesEnMain.size(); j++) {
@@ -229,14 +241,19 @@ public class Jeu {
                     System.out.println(cartesEnMain.get(j));
                 }
                 System.out.println("=========================");
+                
+                /* MODE GRAPHIQUE*/
+                /* ... */
 
                 /* On demande au joueur quelle carte il veut jouer */
                 int choix;
-
+                /* MODE CONSOLE */
                 do {
                     choix = LectureClavier.lireEntier("Quelle carte voulez-vous jouer ?");
                 } while (choix < 1 && choix > 3);
-
+                /* MODE GRAPHIQUE */
+                /* ... */
+                
                 /* Appel à la fonction jouer */
                 Carte c = joueursPartie.get(i).jouer(cartesEnMain.get(choix - 1));
 
@@ -244,13 +261,22 @@ public class Jeu {
                 pliActuel.put(joueursPartie.get(i), c);
 
                 /* On affiche le pli actuel pour voir ce qu'on a joué */
+                /* MODE CONSOLE */
                 afficherPliActuel();
-
+                /* MODE GRAPHIQUE */
+                /* ... */
+                
                 /* On fait piocher notre joueur ensuite */
                 if (!tasDeCartes.isEmpty()) {
                     c = joueursPartie.get(i).piocher(tasDeCartes);
+                    /* MODE CONSOLE */
                     System.out.println(joueursPartie.get(i).getNom() + " a pioché : " + c.getOrdre() + " de " + c.getFamille());
+                    /* MODE GRAPHIQUE */
+                    /* ... */
                 }
+                
+                /* Quand il a fini de jouer on met le tour à faux */
+                joueursPartie.get(i).setTour(false);
             } /* Fin du jouer pour vrai joueur */
 
             i++;

@@ -21,6 +21,8 @@ public class Joueur {
     private boolean premier;
 
     private boolean IA;
+    
+    private boolean tour;
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.BE6D8EFC-C7C8-5E18-76BD-752E80A886A7]
@@ -38,6 +40,7 @@ public class Joueur {
         this.nom = nom;
         this.nbPoints = 0;
         this.premier = false;
+        this.tour = false;
         this.cartesEnMain = new ArrayList<>();
         this.plisGagnes = new ArrayList<>();
         this.IA = IA;
@@ -95,6 +98,14 @@ public class Joueur {
 
     public void setPremier(boolean premier) {
         this.premier = premier;
+    }
+
+    public boolean isTour() {
+        return tour;
+    }
+
+    public void setTour(boolean tour) {
+        this.tour = tour;
     }
 
     public ArrayList<Carte> getCartesEnMain() {
