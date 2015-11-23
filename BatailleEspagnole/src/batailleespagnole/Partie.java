@@ -134,7 +134,7 @@ public class Partie {
         mJoueurs.remove(j);
     }
     
-    public void lancerPartie() {
+    public void lancerPartieConsole() {
         mJoueurs.get(0).setPremier(true);
         int i = 0, max = 0;
         boolean cond;

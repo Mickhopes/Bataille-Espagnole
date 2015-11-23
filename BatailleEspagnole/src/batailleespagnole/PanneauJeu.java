@@ -71,13 +71,16 @@ public class PanneauJeu extends JPanel implements MouseListener, MouseMotionList
         etat = Etat.EN_COURS;
         
         int nbJeuxMax, nbPtsMax, nbJoueurs, nbIA;
+        
+        /* On demande à l'utilisateur combien de joueurs au total il souhaite dans sa partie */
         do {
             nbJoueurs = Integer.parseInt(JOptionPane.showInputDialog(this, "Combien de joueurs (2-4) au total ?", "Nombre de joueurs", JOptionPane.QUESTION_MESSAGE));
         } while (nbJoueurs < 2 || nbJoueurs > 4);
 
+        /* Ensuite on demande combien d'IA il souhaite parmis les joueurs */
         do {
-            nbIA = Integer.parseInt(JOptionPane.showInputDialog(this, "Combien de joueurs Ordinateur (0-4) ?", "Nombre d'IA", JOptionPane.QUESTION_MESSAGE));
-        } while (nbIA < 0 || nbIA > 4);
+            nbIA = Integer.parseInt(JOptionPane.showInputDialog(this, "Combien de joueurs Ordinateur (0-Nombre de joueurs) ?", "Nombre d'IA", JOptionPane.QUESTION_MESSAGE));
+        } while (nbIA < 0 || nbIA>nbJoueurs);
         do {
             nbJeuxMax = Integer.parseInt(JOptionPane.showInputDialog(this, "Entrez un nombre de jeux maximum (0=infini)", "Nombre de jeux", JOptionPane.QUESTION_MESSAGE));
             nbPtsMax = Integer.parseInt(JOptionPane.showInputDialog(this, "Entrez un nombre de points maximum (0=infini)", "Nombre de points", JOptionPane.QUESTION_MESSAGE));
@@ -99,7 +102,7 @@ public class PanneauJeu extends JPanel implements MouseListener, MouseMotionList
             p.ajoutJoueur(new Joueur("Joueur " + (j + 1), true));
         }
 
-        p.lancerPartie();
+        p.lancerPartieConsole();
         
         this.over = null;
         refresh();

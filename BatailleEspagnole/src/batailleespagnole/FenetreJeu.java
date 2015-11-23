@@ -31,7 +31,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class FenetreJeu {
 
-    /* Mode console */
+    /* MODE CONSOLE */
     public static void menu() {
         System.out.println("==========Menu Principal===========");
         System.out.println("-1- Nouvelle Partie");
@@ -278,7 +278,7 @@ public class FenetreJeu {
 
         afficherMaFenetre();
         
-        /* Mode console */
+        /* MODE CONSOLE */
         // TODO code application logic here
         /*
         menu();
