@@ -177,7 +177,6 @@ public class Partie {
                 }
             }
             tableauScores();
-            System.out.println("Le vainqueur du jeu n°" + (i + 1) + " est " + jWin.getNom());
 
             /* Iteration de la boucle */
             i++;
@@ -190,9 +189,13 @@ public class Partie {
             }
         }
     }
+    
+    public void lancerPartie() {
+        
+    }
 
     public void tableauScores() {
-        System.out.println("");
+        System.out.println("\nScores : ");
         for (int i = 0; i < mJoueurs.size(); i++) {
             System.out.println("<" + mJoueurs.get(i).getNom() + "> => " + mJoueurs.get(i).getNbPoints() + " pts");
         }

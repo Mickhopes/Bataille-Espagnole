@@ -93,6 +93,7 @@ public class Jeu {
                 sum += plisGagnes.get(j).getValeur();
             }
             joueursPartie.get(i).ajoutPoints(sum);
+            joueursPartie.get(i).getPlisGagnes().clear();
         }
     }
 
