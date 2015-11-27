@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map.Entry;
+import javax.swing.JOptionPane;
 
 // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
 // #[regen=yes,id=DCE.9F89383C-EBD4-AA66-4B9E-9EBDD505F42E]
@@ -251,7 +252,7 @@ public class Jeu {
                 /* MODE CONSOLE */
                 do {
                     choix = LectureClavier.lireEntier("Quelle carte voulez-vous jouer ?");
-                } while (choix < 1 && choix > 3);
+                } while (choix < 1 || choix > 3);
                 /* MODE GRAPHIQUE */
                 /* ... */
                 
