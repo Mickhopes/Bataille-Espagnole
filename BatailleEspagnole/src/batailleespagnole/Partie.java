@@ -118,7 +118,7 @@ public class Partie {
      * @return ArrayList(Joueur) la liste des joueurs de la partie
      * @see Joueur
      */
-    public ArrayList<Joueur> getJoueurs() {
+    public ArrayList<Joueur> getJoueursPartie() {
         return joueursPartie;
     }
 
@@ -128,7 +128,7 @@ public class Partie {
      * @param val La liste des joueurs à mettre
      * @see Joueur
      */
-    public void setJoueurs(ArrayList<Joueur> val) {
+    public void setJoueursPartie(ArrayList<Joueur> val) {
         this.joueursPartie = val;
     }
 
