@@ -7,28 +7,46 @@ import java.util.LinkedList;
 import java.util.Map.Entry;
 import javax.swing.JOptionPane;
 
-// <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-// #[regen=yes,id=DCE.9F89383C-EBD4-AA66-4B9E-9EBDD505F42E]
-// </editor-fold> 
+/**
+ * Classe qui représente un jeu d'une partie
+ * 
+ * @author Line
+ */
 public class Jeu {
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.B143A8BF-D54D-B324-D01A-BAE760DE3DDA]
-    // </editor-fold> 
+    /**
+     * Le nombre de plis actuel d'un jeu
+     */
     private int nbPlis;
 
+    /**
+     * HashMap qui correspond au pli actuel, les Joueurs de la partie sont les clés, les cartes qu'ils ont joué sont les valeurs
+     * 
+     * @see Joueur
+     * @see Carte
+     */
     private HashMap<Joueur, Carte> pliActuel;
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.91CF4B32-C932-208C-D48A-655DA4508BAC]
-    // </editor-fold> 
+    /**
+     * La famille atout d'un jeu
+     * 
+     * @see TypeFamille
+     */
     private TypeFamille atout;
 
+    /**
+     * Le tas de cartes d'un jeu dans lequel les joueurs piochent
+     * 
+     * @see Carte
+     */
     private LinkedList<Carte> tasDeCartes;
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.AA2EBD6B-B27A-F705-4B38-19DFF457F2D9]
-    // </editor-fold> 
+    /**
+     * Constructeur de Jeu
+     * 
+     * @param joueursPartie Les joueurs de la partie à inclure dans le jeu
+     * @see Joueur
+     */
     public Jeu(ArrayList<Joueur> joueursPartie) {
         nbPlis = 0;
         tasDeCartes = new LinkedList<>();
@@ -39,53 +57,92 @@ public class Jeu {
 
     }
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.2BA84C2F-7D3D-E43E-FFE3-8491B1E33686]
-    // </editor-fold> 
+    /**
+     * Retourne la famille atout du jeu
+     * 
+     * @return TypeFamille qui correspond à la famille atout
+     * @see TypeFamille
+     */
     public TypeFamille getAtout() {
         return atout;
     }
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.F1781461-6A98-959E-30DE-4F61DDD67FEA]
-    // </editor-fold> 
+    /**
+     * Met à jour la famille atout du jeu
+     * 
+     * @param val La famille à mettre à jour
+     * @see TypeFamille
+     */
     public void setAtout(TypeFamille val) {
         this.atout = val;
     }
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.8334162B-10E8-A996-E90D-EA277FBD0C1F]
-    // </editor-fold> 
+    /**
+     * Retourne le nombre de plis actuel du jeu
+     * 
+     * @return Un entier qui correspond au nombre de plis actuel du jeu
+     */
     public int getNbPlis() {
         return nbPlis;
     }
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.77D0D63E-84B4-1E0A-058C-1A99872C9271]
-    // </editor-fold> 
+    /**
+     * Met à jour le nombre de plis actuel du jeu
+     * 
+     * @param val L'entier qui correspond au nombre de plis
+     */
     public void setNbPlis(int val) {
         this.nbPlis = val;
     }
 
+    /**
+     * Retourne le table de hachage du pli actuel du jeu
+     * 
+     * @return HashMap<Joueur, Carte> La table de hachage du pli actuel
+     * @see Joueur
+     * @see Carte
+     */
     public HashMap<Joueur, Carte> getPliActuel() {
         return pliActuel;
     }
 
+    /**
+     * Met à jour la table de hachage qui correspond au pli actuel du jeu
+     * 
+     * @param pliActuel HashMap<Joueur, Carte> La table de hachage du pli actuel
+     * @see Joueur
+     * @see Carte
+     */
     public void setPliActuel(HashMap<Joueur, Carte> pliActuel) {
         this.pliActuel = pliActuel;
     }
 
+    /**
+     * Retourne le tas de cartes du jeu
+     * 
+     * @return LinkedList<Carte> La liste de cartes qui correspond au tas de cartes du jeu
+     * @see Carte
+     */
     public LinkedList<Carte> getTasDeCartes() {
         return tasDeCartes;
     }
 
+    /**
+     * Met à jour le tas de cartes du jeu
+     * 
+     * @param tasDeCartes LinkedList<Carte> La liste de cartes à mettre à jour
+     * @see Carte
+     */
     public void setTasDeCartes(LinkedList<Carte> tasDeCartes) {
         this.tasDeCartes = tasDeCartes;
     }
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.EA483816-8429-22EF-D30C-6BAC08AFA7AB]
-    // </editor-fold> 
+    /**
+     * Méthode qui permet de compter les points de tous les joueurs de la partie pour un jeu
+     * 
+     * @param joueursPartie Les joueurs de la partie
+     * @see Joueur
+     */
     public void compterPoints(ArrayList<Joueur> joueursPartie) {
         for (int i = 0; i < joueursPartie.size(); i++) {
             ArrayList<Carte> plisGagnes = joueursPartie.get(i).getPlisGagnes();
@@ -98,6 +155,9 @@ public class Jeu {
         }
     }
 
+    /**
+     * Méthode qui crée le paquet de cartes
+     */
     public void creerPaquet() {
 
         /* On crée les 52 cartes */
@@ -108,10 +168,19 @@ public class Jeu {
         }
     }
 
+    /**
+     * Méthode qui mélange les cartes du tas
+     */
     public void melangerCartes() {
         Collections.shuffle(tasDeCartes);
     }
 
+    /**
+     * Méthode qui permet de distribuer les cartes du tas au joueur, 3 cartes par joueur
+     * 
+     * @param joueursPartie ArrayList<Joueur> Les joueurs de la partie
+     * @see Joueur
+     */
     public void distribuer(ArrayList<Joueur> joueursPartie) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < joueursPartie.size(); j++) {
@@ -120,7 +189,11 @@ public class Jeu {
         }
     }
 
-    // TODO : gérer ATOUTS ALLO !!!
+    /**
+     * Méthode qui permet de déterminer le joueur vainqueur d'un pli
+     * 
+     * @return Joueur Le joueur qui est le vainqueur du pli
+     */
     public Joueur determinerVainqueur() {
         /* Pour toutes les cartes jouées du pli */
         Carte.TypeOrdre max = Carte.TypeOrdre.DEUX;
@@ -173,9 +246,11 @@ public class Jeu {
         return jMax;
     }
 
-    /* jouerTour affiche un menu + cartes actuelles (+ cartes posées)
-     Il joue une de ses cartes (sauf s'il n'en a plus)
-     Il en pioche une autre et on l'affiche
+    /**
+     * Méthode qui permet aux joueurs de la partie de jouer leur carte pour un pli
+     * 
+     * @param joueursPartie ArrayList<Joueur> Les joueurs de la partie
+     * @see Joueur
      */
     public void jouerTour(ArrayList<Joueur> joueursPartie) {
         /* Pour chaque joueur */
@@ -292,10 +367,11 @@ public class Jeu {
 
     }
 
-    /* determinerAtout
-     pop une carte du tas, demander aux joueurs si la famille est un atout souhaité 
-     sinon on repop une carte (et on repose celle d'avant dessous (et shuffle?)
-     on repose la carte en dessous du tas
+    /**
+     * Méthode qui permet de déterminer la famille atout d'un jeu en demandant à chaque joueur pour une carte piochée dans le tas
+     * 
+     * @param joueursPartie ArrayList<Joueur> Les joueurs de la partie
+     * @see Joueur
      */
     public void determinerAtout(ArrayList<Joueur> joueursPartie) {
         TypeFamille atout = TypeFamille.Bâton;
@@ -334,6 +410,9 @@ public class Jeu {
         this.atout = atout;
     }
 
+    /**
+     * Méthode qui affiche le pli actuel
+     */
     public void afficherPliActuel() {
         System.out.println("=== Cartes du pli actuel n°" + (getNbPlis() + 1) + " ===");
         for (Entry<Joueur, Carte> e : pliActuel.entrySet()) {
@@ -348,6 +427,14 @@ public class Jeu {
         System.out.println("");
     }
 
+    /**
+     * Méthode qui fait jouer un Joueur IA
+     * 
+     * @param j Joueur Le joueur IA qui doit jouer
+     * @return Carte La carte que l'IA désire jouer
+     * @see Joueur
+     * @see Carte
+     */
     public Carte jouerIA(Joueur j) {
         ArrayList<Carte> cartesEnMain = j.getCartesEnMain();
         int nbCartesTapis = 0;
@@ -553,7 +640,13 @@ public class Jeu {
         }
     }
 
-    /* Fonction qui détecte la fin d'un jeu */
+    /**
+     * Méthode qui détecte la fin d'un jeu
+     * 
+     * @param joueursPartie ArrayList<Joueur> Les joueurs de la partie
+     * @return boolean True si la partie est finie sinon False
+     * @see Joueur
+     */
     boolean finJeu(ArrayList<Joueur> joueursPartie) {
         if (tasDeCartes.isEmpty()) {
             for (int i = 0; i < joueursPartie.size(); i++) {
