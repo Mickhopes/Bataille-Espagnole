@@ -1,16 +1,11 @@
 package batailleespagnole;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.*;
 import java.util.ArrayList;
 import java.util.Map.Entry;
-import javax.imageio.ImageIO;
 
 /**
  * Classe qui sert à représenter une partie
- * 
+ *
  * @author Line
  */
 public class Partie {
@@ -26,7 +21,8 @@ public class Partie {
     private int nbPointsMax;
 
     /**
-     * Le nombre de joueur de la partie (ce nombre est considéré fixe pour une partie)
+     * Le nombre de joueur de la partie (ce nombre est considéré fixe pour une
+     * partie)
      */
     private final int nbJoueurs;
 
@@ -37,15 +33,15 @@ public class Partie {
 
     /**
      * Les joueurs de la partie
-     * 
+     *
      * @see Joueur
      */
     private ArrayList<Joueur> joueursPartie;
-    
+
     /**
-     * Constructeur par défaut de Partie
-     * Fixe le nombre de jeux à 10, le nombre de points max à 300
-     * 
+     * Constructeur par défaut de Partie Fixe le nombre de jeux à 10, le nombre
+     * de points max à 300
+     *
      * @param nbJoueurs Le nombre de joueurs de la partie
      */
     public Partie(int nbJoueurs) {
@@ -58,7 +54,7 @@ public class Partie {
 
     /**
      * Deuxième constructeur de Partie
-     * 
+     *
      * @param nbJoueurs Le nombre de joueurs de la partie
      * @param nbJeux Le nombre de jeux max de la partie
      * @param nbPointsMax Le nombre de points max de la partie
@@ -73,7 +69,7 @@ public class Partie {
 
     /**
      * Retourne le nombre de jeux max de la partie
-     * 
+     *
      * @return Un entier qui correspond au nombre de jeux
      */
     public int getNbJeux() {
@@ -82,7 +78,7 @@ public class Partie {
 
     /**
      * Met à jour le nombre de jeux max d'une partie
-     * 
+     *
      * @param val Le nombre de jeux max à mettre
      */
     public void setNbJeux(int val) {
@@ -91,7 +87,7 @@ public class Partie {
 
     /**
      * Retourne le nombre de points max de la partie
-     * 
+     *
      * @return Un entier qui correspond au nombre de points max de la partie
      */
     public int getNbPointsMax() {
@@ -100,7 +96,7 @@ public class Partie {
 
     /**
      * Met à jour le nombre de points max de la partie
-     * 
+     *
      * @param val Le nombre de points max à mettre
      */
     public void setNbPointsMax(int val) {
@@ -109,7 +105,7 @@ public class Partie {
 
     /**
      * Retourne le nombre de joueurs de la partie
-     * 
+     *
      * @return Un entier qui correspond au nombre de joueurs de la partie
      */
     public int getNbJoueurs() {
@@ -118,7 +114,7 @@ public class Partie {
 
     /**
      * Retourne les joueurs de la partie
-     * 
+     *
      * @return ArrayList(Joueur) la liste des joueurs de la partie
      * @see Joueur
      */
@@ -128,7 +124,7 @@ public class Partie {
 
     /**
      * Met à jour la liste des joueurs de la partie
-     * 
+     *
      * @param val La liste des joueurs à mettre
      * @see Joueur
      */
@@ -138,7 +134,7 @@ public class Partie {
 
     /**
      * Méthode qui permet d'ajouter un joueur à la partie
-     * 
+     *
      * @param j Joueur Le joueur à ajouter
      * @see Joueur
      */
@@ -148,20 +144,21 @@ public class Partie {
 
     /**
      * Méthode qui permet de enlever un joueur de la partie
-     * 
+     *
      * @param j Joueur le jouer à enlever
      * @see Joueur
      */
     public void supprJoueur(Joueur j) {
         joueursPartie.remove(j);
     }
-    
+
     /**
      * Méthode qui permet de lancer la partie en mode console
      */
-    public void lancerPartieConsole() {
+    public void lancerPartie() {
         joueursPartie.get(0).setPremier(true);
         int i = 0, max = 0;
+        Joueur jWin = null;
         boolean cond;
         if (nbJeux != 0) {
             cond = i < nbJeux;
@@ -177,7 +174,7 @@ public class Partie {
             /* appel à la fonction qui fait jouer les joueurs */
             while (!j.finJeu(joueursPartie)) {
                 j.jouerTour(joueursPartie);
-                Joueur jWin = j.determinerVainqueur();
+                jWin = j.determinerVainqueur();
 
                 /* On remet les attributs premier des joueurs à false */
                 for (int k = 0; k < joueursPartie.size(); k++) {
@@ -185,6 +182,7 @@ public class Partie {
                 }
                 jWin.setPremier(true);
 
+                System.out.println("");
                 System.out.println("Le vainqueur du pli n°" + ((j.getNbPlis()) + 1) + " est " + jWin.getNom());
                 j.setNbPlis(j.getNbPlis() + 1);
                 for (Entry<Joueur, Carte> e : j.getPliActuel().entrySet()) {
@@ -194,14 +192,14 @@ public class Partie {
                 j.getPliActuel().clear();
             }
             j.compterPoints(joueursPartie);
-            Joueur jWin = null;
+            jWin = null;
             for (int k = 0; k < joueursPartie.size(); k++) {
                 if (joueursPartie.get(k).getNbPoints() > max) {
                     max = joueursPartie.get(k).getNbPoints();
                     jWin = joueursPartie.get(k);
                 }
             }
-            System.out.println("Le vainqueur actuel de la partie est "+jWin.getNom());
+            System.out.println("");
             tableauScores();
 
             /* Iteration de la boucle */
@@ -214,13 +212,15 @@ public class Partie {
                 cond = max < nbPointsMax;
             }
         }
+        System.out.println("");
+        System.out.println("Le vainqueur de la partie est " + jWin.getNom());
     }
 
     /**
      * Méthode qui permet d'afficher le tableau des scores de la partie
      */
     public void tableauScores() {
-        System.out.println("\nScores : ");
+        System.out.println("Scores : ");
         for (int i = 0; i < joueursPartie.size(); i++) {
             System.out.println("<" + joueursPartie.get(i).getNom() + "> => " + joueursPartie.get(i).getNbPoints() + " pts");
         }

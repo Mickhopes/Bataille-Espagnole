@@ -5,11 +5,11 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map.Entry;
-import javax.swing.JOptionPane;
+import java.util.Random;
 
 /**
  * Classe qui représente un jeu d'une partie
- * 
+ *
  * @author Line
  */
 public class Jeu {
@@ -20,8 +20,9 @@ public class Jeu {
     private int nbPlis;
 
     /**
-     * HashMap qui correspond au pli actuel, les Joueurs de la partie sont les clés, les cartes qu'ils ont joué sont les valeurs
-     * 
+     * HashMap qui correspond au pli actuel, les Joueurs de la partie sont les
+     * clés, les cartes qu'ils ont joué sont les valeurs
+     *
      * @see Joueur
      * @see Carte
      */
@@ -29,21 +30,21 @@ public class Jeu {
 
     /**
      * La famille atout d'un jeu
-     * 
+     *
      * @see TypeFamille
      */
     private TypeFamille atout;
 
     /**
      * Le tas de cartes d'un jeu dans lequel les joueurs piochent
-     * 
+     *
      * @see Carte
      */
     private LinkedList<Carte> tasDeCartes;
 
     /**
      * Constructeur de Jeu
-     * 
+     *
      * @param joueursPartie Les joueurs de la partie à inclure dans le jeu
      * @see Joueur
      */
@@ -59,7 +60,7 @@ public class Jeu {
 
     /**
      * Retourne la famille atout du jeu
-     * 
+     *
      * @return TypeFamille qui correspond à la famille atout
      * @see TypeFamille
      */
@@ -69,7 +70,7 @@ public class Jeu {
 
     /**
      * Met à jour la famille atout du jeu
-     * 
+     *
      * @param val La famille à mettre à jour
      * @see TypeFamille
      */
@@ -79,7 +80,7 @@ public class Jeu {
 
     /**
      * Retourne le nombre de plis actuel du jeu
-     * 
+     *
      * @return Un entier qui correspond au nombre de plis actuel du jeu
      */
     public int getNbPlis() {
@@ -88,7 +89,7 @@ public class Jeu {
 
     /**
      * Met à jour le nombre de plis actuel du jeu
-     * 
+     *
      * @param val L'entier qui correspond au nombre de plis
      */
     public void setNbPlis(int val) {
@@ -97,7 +98,7 @@ public class Jeu {
 
     /**
      * Retourne le table de hachage du pli actuel du jeu
-     * 
+     *
      * @return HashMap(Joueur, Carte) La table de hachage du pli actuel
      * @see Joueur
      * @see Carte
@@ -108,7 +109,7 @@ public class Jeu {
 
     /**
      * Met à jour la table de hachage qui correspond au pli actuel du jeu
-     * 
+     *
      * @param pliActuel HashMap(Joueur, Carte) La table de hachage du pli actuel
      * @see Joueur
      * @see Carte
@@ -119,8 +120,9 @@ public class Jeu {
 
     /**
      * Retourne le tas de cartes du jeu
-     * 
-     * @return LinkedList(Carte) La liste de cartes qui correspond au tas de cartes du jeu
+     *
+     * @return LinkedList(Carte) La liste de cartes qui correspond au tas de
+     * cartes du jeu
      * @see Carte
      */
     public LinkedList<Carte> getTasDeCartes() {
@@ -129,7 +131,7 @@ public class Jeu {
 
     /**
      * Met à jour le tas de cartes du jeu
-     * 
+     *
      * @param tasDeCartes LinkedList(Carte) La liste de cartes à mettre à jour
      * @see Carte
      */
@@ -138,8 +140,9 @@ public class Jeu {
     }
 
     /**
-     * Méthode qui permet de compter les points de tous les joueurs de la partie pour un jeu
-     * 
+     * Méthode qui permet de compter les points de tous les joueurs de la partie
+     * pour un jeu
+     *
      * @param joueursPartie Les joueurs de la partie
      * @see Joueur
      */
@@ -176,8 +179,9 @@ public class Jeu {
     }
 
     /**
-     * Méthode qui permet de distribuer les cartes du tas au joueur, 3 cartes par joueur
-     * 
+     * Méthode qui permet de distribuer les cartes du tas au joueur, 3 cartes
+     * par joueur
+     *
      * @param joueursPartie ArrayList(Joueur) Les joueurs de la partie
      * @see Joueur
      */
@@ -191,7 +195,7 @@ public class Jeu {
 
     /**
      * Méthode qui permet de déterminer le joueur vainqueur d'un pli
-     * 
+     *
      * @return Joueur Le joueur qui est le vainqueur du pli
      */
     public Joueur determinerVainqueur() {
@@ -247,8 +251,9 @@ public class Jeu {
     }
 
     /**
-     * Méthode qui permet aux joueurs de la partie de jouer leur carte pour un pli
-     * 
+     * Méthode qui permet aux joueurs de la partie de jouer leur carte pour un
+     * pli
+     *
      * @param joueursPartie ArrayList(Joueur) Les joueurs de la partie
      * @see Joueur
      */
@@ -263,10 +268,10 @@ public class Jeu {
         while (count < joueursPartie.size()) {
             System.out.println("");
             /* On affiche le nom du joueur qui doit jouer */
-            System.out.println("==Joueur " + joueursPartie.get(i).getNom() + "==");
+            System.out.println("Au tour de " + joueursPartie.get(i).getNom() + " :");
+            System.out.println("");
             /* On affiche le contenu du pli */
             afficherPliActuel();
-            System.out.println("");
 
             ArrayList<Carte> cartesEnMain = joueursPartie.get(i).getCartesEnMain();
 
@@ -274,14 +279,14 @@ public class Jeu {
             if (joueursPartie.get(i).isIA()) {
                 /* A DECOMMENTER SI ON VEUT SAVOIR CE QUE POSSEDE L'IA */
                 /*
-                 System.out.println("====Cartes actuelles====");
+                 System.out.println("====Cartes En Main====");
                  /* On affiche les cartes en main du joueur */
                 /*
                  for (int j = 0; j < cartesEnMain.size(); j++) {
                  System.out.print(j + 1 + " - ");
                  System.out.println(cartesEnMain.get(j));
                  }
-                 System.out.println("=========================");
+                 System.out.println("");
                  */
 
                 /* On récupère la carte déterminée par l'algo d'IA */
@@ -290,59 +295,51 @@ public class Jeu {
                 /* On ajoute au pli la carte du joueur */
                 pliActuel.put(joueursPartie.get(i), c);
 
+                System.out.println(joueursPartie.get(i).getNom() + " a joué la carte : " + c);
+
                 /* On affiche à nouveau le pli pour montrer ce qu'il a joué */
                 /* MODE CONSOLE */
-                afficherPliActuel();
-                /* MODE GRAPHIQUE */
-                /* ... */
-                
+                //afficherPliActuel();
                 /* On fait piocher notre joueur ensuite */
                 if (!tasDeCartes.isEmpty()) {
                     c = joueursPartie.get(i).piocher(tasDeCartes);
                 }
-                
+
             } /* Sinon */ else {
-                
+
                 /* MODE CONSOLE */
-                System.out.println("====Cartes actuelles====");
+                System.out.println("");
+                System.out.println("====Cartes En Main====");
                 /* On affiche les cartes en main du joueur */
                 for (int j = 0; j < cartesEnMain.size(); j++) {
                     System.out.print(j + 1 + " - ");
                     System.out.println(cartesEnMain.get(j));
                 }
-                System.out.println("=========================");
-                
-                /* MODE GRAPHIQUE*/
-                /* ... */
+                System.out.println("");
 
                 /* On demande au joueur quelle carte il veut jouer */
                 int choix;
                 /* MODE CONSOLE */
                 do {
                     choix = LectureClavier.lireEntier("Quelle carte voulez-vous jouer ?");
-                } while (choix < 1 || choix > 3);
-                /* MODE GRAPHIQUE */
-                /* ... */
-                
+                } while (choix < 1 || choix > cartesEnMain.size());
+
                 /* Appel à la fonction jouer */
                 Carte c = joueursPartie.get(i).jouer(cartesEnMain.get(choix - 1));
 
                 /* On ajoute au pli la carte du joueur */
                 pliActuel.put(joueursPartie.get(i), c);
 
+                System.out.println("\n" + joueursPartie.get(i).getNom() + " a joué la carte : " + c);
+
                 /* On affiche le pli actuel pour voir ce qu'on a joué */
                 /* MODE CONSOLE */
-                afficherPliActuel();
-                /* MODE GRAPHIQUE */
-                /* ... */
-                
+                //afficherPliActuel();
                 /* On fait piocher notre joueur ensuite */
                 if (!tasDeCartes.isEmpty()) {
                     c = joueursPartie.get(i).piocher(tasDeCartes);
                     /* MODE CONSOLE */
                     System.out.println(joueursPartie.get(i).getNom() + " a pioché : " + c.getOrdre() + " de " + c.getFamille());
-                    /* MODE GRAPHIQUE */
-                    /* ... */
                 }
             } /* Fin du jouer pour vrai joueur */
 
@@ -358,8 +355,9 @@ public class Jeu {
     }
 
     /**
-     * Méthode qui permet de déterminer la famille atout d'un jeu en demandant à chaque joueur pour une carte piochée dans le tas
-     * 
+     * Méthode qui permet de déterminer la famille atout d'un jeu en demandant à
+     * chaque joueur pour une carte piochée dans le tas
+     *
      * @param joueursPartie ArrayList(Joueur) Les joueurs de la partie
      * @see Joueur
      */
@@ -373,28 +371,38 @@ public class Jeu {
             ok = true;
             c = this.tasDeCartes.pop();
             atout = c.getFamille();
+            System.out.println("");
             System.out.println("====CHOIX DE L'ATOUT POUR LE JEU====");
-            System.out.println("On a pioché la carte suivante : " + c);
+            System.out.println("La première carte piochée est la suivante : " + c);
             for (int i = 0; i < joueursPartie.size(); i++) {
-                System.out.println("<" + joueursPartie.get(i).getNom() + "> Est-ce que l'atout " + atout + " vous convient ?");
+                System.out.print("\n<" + joueursPartie.get(i).getNom() + "> Est-ce que l'atout " + atout + " vous convient ? ");
                 /* Si notre joueur est un vrai joueur on lui demande */
                 if (!joueursPartie.get(i).isIA()) {
-                    if (!LectureClavier.lireOuiNon("Entrez 'O' pour Oui, 'N' pour Non")) {
+                    if (LectureClavier.lireOuiNon("('O' pour Oui, 'N' pour Non)")) {
                         ok = false;
-                        System.out.println("<" + joueursPartie.get(i).getNom() + "> a dit Non");
+                        System.out.println("\n<" + joueursPartie.get(i).getNom() + "> a dit Oui");
                         /* ça ne sert à rien de demander aux autres */
                         break;
                     } else {
-                        /* Les IA diront toujours oui, elles sont sympas quand même */
-                        System.out.println("<" + joueursPartie.get(i).getNom() + "> a dit Oui");
+                        System.out.println("\n<" + joueursPartie.get(i).getNom() + "> a dit Non");
                     }
                 } else {
-                    System.out.println("<" + joueursPartie.get(i).getNom() + "> a dit Oui");
+                    /* L'IA met un choix aléatoire */
+                    Random r = new Random();
+                    int choix = r.nextInt() % 2;
+
+                    if (choix == 1) {
+                        ok = false;
+                        System.out.println("\n<" + joueursPartie.get(i).getNom() + "> a dit Oui");
+                    } else {
+                        System.out.println("\n<" + joueursPartie.get(i).getNom() + "> a dit Non");
+                    }
                 }
                 System.out.println("");
             }
             this.tasDeCartes.addLast(c);
-        } while (!ok);
+        } while (ok);
+        System.out.println("\nLa famille atout est : " + c.getFamille());
         System.out.println("");
 
         this.atout = atout;
@@ -404,7 +412,7 @@ public class Jeu {
      * Méthode qui affiche le pli actuel
      */
     public void afficherPliActuel() {
-        System.out.println("=== Cartes du pli actuel n°" + (getNbPlis() + 1) + " ===");
+        System.out.println("=== Cartes du pli actuel n°" + (getNbPlis() + 1) + " (Atout " + atout + ")===");
         for (Entry<Joueur, Carte> e : pliActuel.entrySet()) {
             if (e.getValue() != null) {
                 if (e.getKey().isPremier()) {
@@ -419,7 +427,7 @@ public class Jeu {
 
     /**
      * Méthode qui fait jouer un Joueur IA
-     * 
+     *
      * @param j Joueur Le joueur IA qui doit jouer
      * @return Carte La carte que l'IA désire jouer
      * @see Joueur
@@ -632,7 +640,7 @@ public class Jeu {
 
     /**
      * Méthode qui détecte la fin d'un jeu
-     * 
+     *
      * @param joueursPartie ArrayList(Joueur) Les joueurs de la partie
      * @return boolean True si la partie est finie sinon False
      * @see Joueur
@@ -648,6 +656,5 @@ public class Jeu {
         }
         return false;
     }
-    
-    
+
 }

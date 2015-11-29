@@ -7,59 +7,66 @@ package batailleespagnole;
 
 /**
  * Classe principale du programme
- * 
+ *
  * @author Lily
  */
 public class BatailleEspagnole {
 
-    /** 
+    /**
      * Méthode qui affiche le menu du programme
      */
     public static void menu() {
+        System.out.println("");
         System.out.println("==========Menu Principal===========");
         System.out.println("-1- Nouvelle Partie");
+        System.out.println("-0- Quitter");
+        System.out.println("");
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        menu();
-        int choix = LectureClavier.lireEntier("Que voulez-vous faire ?");
-        int nbJeuxMax, nbPtsMax, nbJoueurs, nbIA;
-        switch (choix) {
-            case 1:
-                do {
-                    nbJoueurs = LectureClavier.lireEntier("Combien de joueurs (2-4) au total?");
-                } while (nbJoueurs < 2 || nbJoueurs > 4);
+        int choix;
 
-                do {
-                    nbIA = LectureClavier.lireEntier("Combien de joueurs Ordinateur (0-4)?");
-                } while (nbIA < 0 || nbIA > 4);
-                do {
-                    nbJeuxMax = LectureClavier.lireEntier("Entrez un nombre de jeux maximum (0=infini)");
-                    nbPtsMax = LectureClavier.lireEntier("Entrez un nombre de points maximum (0=infini)");
-                } while (nbJeuxMax == 0 && nbPtsMax == 0);
+        do {
+            menu();
+            choix = LectureClavier.lireEntier("Que voulez-vous faire ?");
+            int nbJeuxMax, nbPtsMax, nbJoueurs, nbIA;
+            switch (choix) {
+                case 1:
+                    do {
+                        nbJoueurs = LectureClavier.lireEntier("\nCombien de joueurs (2-4) au total?");
+                    } while (nbJoueurs < 2 || nbJoueurs > 4);
 
-                Partie p = new Partie(nbJoueurs, nbJeuxMax, nbPtsMax);
-                int i;
-                /* On demande le nom des vrais joueurs et on les ajoute à la partie */
-                for (i = 0; i < nbJoueurs - nbIA; i++) {
-                    System.out.println("Nom du joueur n°" + (i + 1));
-                    String nom = LectureClavier.lireChaine();
-                    p.ajoutJoueur(new Joueur(nom, false));
-                }
+                    do {
+                        nbIA = LectureClavier.lireEntier("\nCombien de joueurs Ordinateur (0-4)?");
+                    } while (nbIA < 0 || nbIA > 4);
+                    do {
+                        nbJeuxMax = LectureClavier.lireEntier("\nEntrez un nombre de jeux maximum (0=infini)");
+                        nbPtsMax = LectureClavier.lireEntier("\nEntrez un nombre de points maximum (0=infini)");
+                    } while (nbJeuxMax == 0 && nbPtsMax == 0);
 
-                /* On crée le nombre de joueurs IA nécessaires */
-                for (int j = i; j < nbJoueurs; j++) {
-                    System.out.println("Nom du joueur ordinateur n°" + (j + 1));
-                    p.ajoutJoueur(new Joueur("Joueur " + (j + 1), true));
-                }
-                p.lancerPartieConsole();
-            default:
-                break;
-        }
+                    Partie p = new Partie(nbJoueurs, nbJeuxMax, nbPtsMax);
+                    int i;
+                    /* On demande le nom des vrais joueurs et on les ajoute à la partie */
+                    for (i = 0; i < nbJoueurs - nbIA; i++) {
+                        System.out.println("\nNom du joueur n°" + (i + 1));
+                        String nom = LectureClavier.lireChaine();
+                        p.ajoutJoueur(new Joueur(nom, false));
+                    }
+
+                    /* On crée le nombre de joueurs IA nécessaires */
+                    for (int j = i; j < nbJoueurs; j++) {
+                        System.out.println("\nNom de l'ordinateur n°" + (j + 1));
+                        System.out.println("Joueur " + (j + 1));
+                        p.ajoutJoueur(new Joueur("Joueur " + (j + 1), true));
+                    }
+                    p.lancerPartie();
+                default:
+                    break;
+            }
+        } while (choix != 0);
     }
 
 }

@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 /**
  * Classe servant à représenter un joueur
- * 
+ *
  * @author Line
  */
 public class Joueur {
@@ -29,25 +29,25 @@ public class Joueur {
      * Attribut qui permet d'indiquer si ce joueur est un IA
      */
     private boolean IA;
-    
+
     /**
      * ArrayList de Carte qui correspondent aux cartes dans la main du joueur
-     * 
+     *
      * @see Carte
      */
     private ArrayList<Carte> cartesEnMain;
 
     /**
-     * ArrayList de Carte qui correspondent aux cartes qu'il a gagné durant le jeu
+     * ArrayList de Carte qui correspondent aux cartes qu'il a gagné durant le
+     * jeu
      *
      * @see Carte
      */
     private ArrayList<Carte> plisGagnes;
 
-
     /**
      * Constructeur de joueur
-     * 
+     *
      * @param nom Le nom du joueur
      * @param IA Indique si le joueur est une IA ou pas
      */
@@ -62,7 +62,7 @@ public class Joueur {
 
     /**
      * Retourne le nombre de points d'un joueur
-     * 
+     *
      * @return Un entier qui correspond au nombre de points d'un joueur
      */
     public int getNbPoints() {
@@ -71,16 +71,16 @@ public class Joueur {
 
     /**
      * Met à jour le nombre de points du joueur
-     * 
+     *
      * @param val Un entier qui correspond au nombre de points à mettre à jour
      */
     public void setNbPoints(int val) {
         this.nbPoints = val;
     }
- 
+
     /**
      * Retourne le nom du joueur
-     * 
+     *
      * @return String qui correspond au nom du joueur
      */
     public String getNom() {
@@ -89,7 +89,7 @@ public class Joueur {
 
     /**
      * Met à jour le nom du joueur
-     * 
+     *
      * @param val String qui correspond au nom du Joueur à mettre à jour
      */
     public void setNom(String val) {
@@ -98,7 +98,7 @@ public class Joueur {
 
     /**
      * Méthode qui permet d'ajouter un certain nombre de points au joueur
-     * 
+     *
      * @param val Un entier qui correspond au nombre de points à ajouter
      */
     public void ajoutPoints(int val) {
@@ -107,7 +107,7 @@ public class Joueur {
 
     /**
      * Indique si le joueur est le premier à jouer
-     * 
+     *
      * @return boolean
      */
     public boolean isPremier() {
@@ -116,7 +116,7 @@ public class Joueur {
 
     /**
      * Met à jour le booléen qui indique si le joueur est le premier à jour
-     * 
+     *
      * @param premier boolean
      */
     public void setPremier(boolean premier) {
@@ -125,7 +125,7 @@ public class Joueur {
 
     /**
      * Retourne les cartes dans la main du joueur
-     * 
+     *
      * @return ArrayList(Carte) Les cartes dans la main du joueur
      * @see Carte
      */
@@ -135,8 +135,9 @@ public class Joueur {
 
     /**
      * Met à jour les cartes en main du joueur
-     * 
-     * @param cartesEnMain ArrayList(Carte) qui correspond aux cartes dans la main du joueur
+     *
+     * @param cartesEnMain ArrayList(Carte) qui correspond aux cartes dans la
+     * main du joueur
      * @see Carte
      */
     public void setCartesEnMain(ArrayList<Carte> cartesEnMain) {
@@ -145,7 +146,7 @@ public class Joueur {
 
     /**
      * Retourne les plis gagnés par le joueur
-     * 
+     *
      * @return ArrayList(Carte) qui correspond aux cartes gagnées par le joueur
      */
     public ArrayList<Carte> getPlisGagnes() {
@@ -154,8 +155,9 @@ public class Joueur {
 
     /**
      * Met à jour les plis gagnés par le joueur
-     * 
-     * @param plisGagnes ArrayList(Carte) qui correspond aux cartes gagnées par le joueur
+     *
+     * @param plisGagnes ArrayList(Carte) qui correspond aux cartes gagnées par
+     * le joueur
      */
     public void setPlisGagnes(ArrayList<Carte> plisGagnes) {
         this.plisGagnes = plisGagnes;
@@ -163,7 +165,7 @@ public class Joueur {
 
     /**
      * Indique si le joueur est une IA ou pas
-     * 
+     *
      * @return boolean
      */
     public boolean isIA() {
@@ -172,7 +174,7 @@ public class Joueur {
 
     /**
      * Met à jour le booléen qui indique si le joueur est une IA
-     * 
+     *
      * @param IA boolean
      */
     public void setIA(boolean IA) {
@@ -180,9 +182,9 @@ public class Joueur {
     }
 
     /**
-     * Redéfinition de la méthode equals pour Joueur
-     * Permet de vérifier que deux joueurs sont bien le même
-     * 
+     * Redéfinition de la méthode equals pour Joueur Permet de vérifier que deux
+     * joueurs sont bien le même
+     *
      * @param o Le deuxième joueur à comparer
      * @return boolean : true si les deux joueurs sont le même, false sinon
      */
@@ -195,8 +197,9 @@ public class Joueur {
     }
 
     /**
-     * Méthode qui permet à un joueur de jouer une carte et l'enlève de ses cartes en main
-     * 
+     * Méthode qui permet à un joueur de jouer une carte et l'enlève de ses
+     * cartes en main
+     *
      * @param carte Carte qui correspond à la Carte à jouer
      * @return Carte qui correspond à la Carte jouée
      */
@@ -207,9 +210,11 @@ public class Joueur {
     }
 
     /**
-     * Méthode qui permet à un joueur de piocher dans le tas de cartes de la partie
-     * 
-     * @param tasDeCartes LinkedList(Carte) qui correspond au tas de cartes de la partie
+     * Méthode qui permet à un joueur de piocher dans le tas de cartes de la
+     * partie
+     *
+     * @param tasDeCartes LinkedList(Carte) qui correspond au tas de cartes de
+     * la partie
      * @return Carte la carte que le joueur a piochée
      */
     public Carte piocher(LinkedList<Carte> tasDeCartes) {
