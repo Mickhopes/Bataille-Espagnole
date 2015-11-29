@@ -6,11 +6,15 @@
 package batailleespagnole;
 
 /**
- *
+ * Classe principale du programme
+ * 
  * @author Lily
  */
 public class BatailleEspagnole {
 
+    /** 
+     * Méthode qui affiche le menu du programme
+     */
     public static void menu() {
         System.out.println("==========Menu Principal===========");
         System.out.println("-1- Nouvelle Partie");

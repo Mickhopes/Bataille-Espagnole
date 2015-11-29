@@ -1,8 +1,5 @@
 package batailleespagnole;
 
-// <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-// #[regen=yes,id=DCE.6384B198-9A51-156D-F380-21276E467CE3]
-// </editor-fold> 
 /**
  * Classe servant à représenter une carte de jeu
  * 
@@ -18,9 +15,6 @@ public class Carte implements Comparable<Carte> {
         DEUX, QUATRE, CINQ, SIX, SEPT, HUIT, NEUF, DIX, CAVALIER, DAME, ROI, TROIS, AS;
     }
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.94E54F8B-922C-A362-FFC7-336B808D8B63]
-    // </editor-fold> 
     /** 
      * L'ordre d'une carte de jeu
      * 
@@ -28,9 +22,6 @@ public class Carte implements Comparable<Carte> {
      */
     private TypeOrdre ordre;
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.EB3D496D-A648-B074-ECDB-8BFBD8AA17D5]
-    // </editor-fold> 
     /**
      * Valeur d'une carte en terme de points
      */
@@ -86,9 +77,6 @@ public class Carte implements Comparable<Carte> {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.4B0892EA-7CCC-BD9C-0057-36BCE26BA1F5]
-    // </editor-fold> 
     /**
      * Retourne l'ordre d'une carte.
      * 
@@ -98,9 +86,6 @@ public class Carte implements Comparable<Carte> {
         return ordre;
     }
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.AFF1BB55-8CB5-1724-8640-68D544841CB7]
-    // </editor-fold> 
     /**
      * Met à jour l'ordre d'une carte.
      * 
@@ -110,9 +95,6 @@ public class Carte implements Comparable<Carte> {
         this.ordre = val;
     }
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.B1A3DC70-FE6B-0E95-DB5D-D9472652FCAF]
-    // </editor-fold> 
     /**
      * Retourne la valeur en points d'une carte.
      * 
@@ -122,9 +104,6 @@ public class Carte implements Comparable<Carte> {
         return valeur;
     }
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,regenBody=yes,id=DCE.1F2E7405-F0A5-31D5-43FD-4A200F91DABE]
-    // </editor-fold> 
     /**
      * Met à jour la valeur d'une carte en points.
      * 

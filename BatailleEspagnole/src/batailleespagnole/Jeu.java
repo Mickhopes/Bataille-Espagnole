@@ -98,7 +98,7 @@ public class Jeu {
     /**
      * Retourne le table de hachage du pli actuel du jeu
      * 
-     * @return HashMap<Joueur, Carte> La table de hachage du pli actuel
+     * @return HashMap(Joueur, Carte) La table de hachage du pli actuel
      * @see Joueur
      * @see Carte
      */
@@ -109,7 +109,7 @@ public class Jeu {
     /**
      * Met à jour la table de hachage qui correspond au pli actuel du jeu
      * 
-     * @param pliActuel HashMap<Joueur, Carte> La table de hachage du pli actuel
+     * @param pliActuel HashMap(Joueur, Carte) La table de hachage du pli actuel
      * @see Joueur
      * @see Carte
      */
@@ -120,7 +120,7 @@ public class Jeu {
     /**
      * Retourne le tas de cartes du jeu
      * 
-     * @return LinkedList<Carte> La liste de cartes qui correspond au tas de cartes du jeu
+     * @return LinkedList(Carte) La liste de cartes qui correspond au tas de cartes du jeu
      * @see Carte
      */
     public LinkedList<Carte> getTasDeCartes() {
@@ -130,7 +130,7 @@ public class Jeu {
     /**
      * Met à jour le tas de cartes du jeu
      * 
-     * @param tasDeCartes LinkedList<Carte> La liste de cartes à mettre à jour
+     * @param tasDeCartes LinkedList(Carte) La liste de cartes à mettre à jour
      * @see Carte
      */
     public void setTasDeCartes(LinkedList<Carte> tasDeCartes) {
@@ -178,7 +178,7 @@ public class Jeu {
     /**
      * Méthode qui permet de distribuer les cartes du tas au joueur, 3 cartes par joueur
      * 
-     * @param joueursPartie ArrayList<Joueur> Les joueurs de la partie
+     * @param joueursPartie ArrayList(Joueur) Les joueurs de la partie
      * @see Joueur
      */
     public void distribuer(ArrayList<Joueur> joueursPartie) {
@@ -249,7 +249,7 @@ public class Jeu {
     /**
      * Méthode qui permet aux joueurs de la partie de jouer leur carte pour un pli
      * 
-     * @param joueursPartie ArrayList<Joueur> Les joueurs de la partie
+     * @param joueursPartie ArrayList(Joueur) Les joueurs de la partie
      * @see Joueur
      */
     public void jouerTour(ArrayList<Joueur> joueursPartie) {
@@ -284,8 +284,6 @@ public class Jeu {
                  System.out.println("=========================");
                  */
 
-                /* On met le tour vrai pour le joueur qui doit jouer */
-                joueursPartie.get(i).setTour(true);
                 /* On récupère la carte déterminée par l'algo d'IA */
                 Carte c = joueursPartie.get(i).jouer(jouerIA(joueursPartie.get(i)));
 
@@ -303,12 +301,7 @@ public class Jeu {
                     c = joueursPartie.get(i).piocher(tasDeCartes);
                 }
                 
-                /* Quand il a fini de jouer on met le tour à faux */
-                joueursPartie.get(i).setTour(false);
             } /* Sinon */ else {
-
-                /* On met le tour vrai pour le joueur qui doit jouer */
-                joueursPartie.get(i).setTour(true);
                 
                 /* MODE CONSOLE */
                 System.out.println("====Cartes actuelles====");
@@ -351,9 +344,6 @@ public class Jeu {
                     /* MODE GRAPHIQUE */
                     /* ... */
                 }
-                
-                /* Quand il a fini de jouer on met le tour à faux */
-                joueursPartie.get(i).setTour(false);
             } /* Fin du jouer pour vrai joueur */
 
             i++;
@@ -370,7 +360,7 @@ public class Jeu {
     /**
      * Méthode qui permet de déterminer la famille atout d'un jeu en demandant à chaque joueur pour une carte piochée dans le tas
      * 
-     * @param joueursPartie ArrayList<Joueur> Les joueurs de la partie
+     * @param joueursPartie ArrayList(Joueur) Les joueurs de la partie
      * @see Joueur
      */
     public void determinerAtout(ArrayList<Joueur> joueursPartie) {
@@ -643,7 +633,7 @@ public class Jeu {
     /**
      * Méthode qui détecte la fin d'un jeu
      * 
-     * @param joueursPartie ArrayList<Joueur> Les joueurs de la partie
+     * @param joueursPartie ArrayList(Joueur) Les joueurs de la partie
      * @return boolean True si la partie est finie sinon False
      * @see Joueur
      */

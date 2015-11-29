@@ -145,6 +145,7 @@ public class LectureClavier {
      * "o" ou "O" cette methode renvoie <code>true</code>, sinon elle renvoie
      * <code>false</code>.
      *
+     * @param invite Une chaîne à afficher avant la lecture
      * @return <code>true</code> si la chaine lue est "o" ou "O",
      * <code>false</code> sinon
      */
