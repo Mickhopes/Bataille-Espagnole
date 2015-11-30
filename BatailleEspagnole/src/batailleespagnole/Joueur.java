@@ -6,7 +6,8 @@ import java.util.LinkedList;
 /**
  * Classe servant à représenter un joueur
  *
- * @author Line
+ * @author Line POUVARET
+ * @author Mickaël TURNEL
  */
 public class Joueur {
 
@@ -99,6 +100,7 @@ public class Joueur {
     /**
      * Méthode qui permet d'ajouter un certain nombre de points au joueur
      *
+     * @author Line POUVARET
      * @param val Un entier qui correspond au nombre de points à ajouter
      */
     public void ajoutPoints(int val) {
@@ -200,6 +202,7 @@ public class Joueur {
      * Méthode qui permet à un joueur de jouer une carte et l'enlève de ses
      * cartes en main
      *
+     * @author Line POUVARET
      * @param carte Carte qui correspond à la Carte à jouer
      * @return Carte qui correspond à la Carte jouée
      */
@@ -213,6 +216,7 @@ public class Joueur {
      * Méthode qui permet à un joueur de piocher dans le tas de cartes de la
      * partie
      *
+     * @author Line POUVARET
      * @param tasDeCartes LinkedList(Carte) qui correspond au tas de cartes de
      * la partie
      * @return Carte la carte que le joueur a piochée

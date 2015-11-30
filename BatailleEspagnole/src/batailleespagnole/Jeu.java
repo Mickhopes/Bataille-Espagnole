@@ -10,7 +10,8 @@ import java.util.Random;
 /**
  * Classe qui représente un jeu d'une partie
  *
- * @author Line
+ * @author Line POUVARET
+ * @author Mickaël TURNEL
  */
 public class Jeu {
 
@@ -143,6 +144,7 @@ public class Jeu {
      * Méthode qui permet de compter les points de tous les joueurs de la partie
      * pour un jeu
      *
+     * @author Line POUVARET
      * @param joueursPartie Les joueurs de la partie
      * @see Joueur
      */
@@ -160,6 +162,8 @@ public class Jeu {
 
     /**
      * Méthode qui crée le paquet de cartes
+     *
+     * @author Line POUVARET
      */
     public void creerPaquet() {
 
@@ -173,6 +177,8 @@ public class Jeu {
 
     /**
      * Méthode qui mélange les cartes du tas
+     *
+     * @author Line POUVARET
      */
     public void melangerCartes() {
         Collections.shuffle(tasDeCartes);
@@ -182,6 +188,7 @@ public class Jeu {
      * Méthode qui permet de distribuer les cartes du tas au joueur, 3 cartes
      * par joueur
      *
+     * @author Line POUVARET
      * @param joueursPartie ArrayList(Joueur) Les joueurs de la partie
      * @see Joueur
      */
@@ -196,6 +203,7 @@ public class Jeu {
     /**
      * Méthode qui permet de déterminer le joueur vainqueur d'un pli
      *
+     * @author Line POUVARET
      * @return Joueur Le joueur qui est le vainqueur du pli
      */
     public Joueur determinerVainqueur() {
@@ -254,6 +262,7 @@ public class Jeu {
      * Méthode qui permet aux joueurs de la partie de jouer leur carte pour un
      * pli
      *
+     * @author Mickaël TURNEL
      * @param joueursPartie ArrayList(Joueur) Les joueurs de la partie
      * @see Joueur
      */
@@ -358,6 +367,7 @@ public class Jeu {
      * Méthode qui permet de déterminer la famille atout d'un jeu en demandant à
      * chaque joueur pour une carte piochée dans le tas
      *
+     * @author Mickaël TURNEL
      * @param joueursPartie ArrayList(Joueur) Les joueurs de la partie
      * @see Joueur
      */
@@ -410,6 +420,9 @@ public class Jeu {
 
     /**
      * Méthode qui affiche le pli actuel
+     *
+     * @author Line POUVARET
+     * @author Mickaël TURNEL
      */
     public void afficherPliActuel() {
         System.out.println("=== Cartes du pli actuel n°" + (getNbPlis() + 1) + " (Atout " + atout + ")===");
@@ -428,6 +441,7 @@ public class Jeu {
     /**
      * Méthode qui fait jouer un Joueur IA
      *
+     * @author Line POUVARET
      * @param j Joueur Le joueur IA qui doit jouer
      * @return Carte La carte que l'IA désire jouer
      * @see Joueur
@@ -641,6 +655,7 @@ public class Jeu {
     /**
      * Méthode qui détecte la fin d'un jeu
      *
+     * @author Line POUVARET
      * @param joueursPartie ArrayList(Joueur) Les joueurs de la partie
      * @return boolean True si la partie est finie sinon False
      * @see Joueur

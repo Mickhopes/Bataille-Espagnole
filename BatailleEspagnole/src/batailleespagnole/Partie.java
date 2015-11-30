@@ -6,7 +6,8 @@ import java.util.Map.Entry;
 /**
  * Classe qui sert à représenter une partie
  *
- * @author Line
+ * @author Line POUVARET
+ * @author Mickaël TURNEL
  */
 public class Partie {
 
@@ -111,7 +112,7 @@ public class Partie {
     public int getNbJoueurs() {
         return this.nbJoueurs;
     }
-
+    
     /**
      * Retourne les joueurs de la partie
      *
@@ -135,6 +136,7 @@ public class Partie {
     /**
      * Méthode qui permet d'ajouter un joueur à la partie
      *
+     * @author Line POUVARET
      * @param j Joueur Le joueur à ajouter
      * @see Joueur
      */
@@ -145,6 +147,7 @@ public class Partie {
     /**
      * Méthode qui permet de enlever un joueur de la partie
      *
+     * @author Line POUVARET
      * @param j Joueur le jouer à enlever
      * @see Joueur
      */
@@ -154,6 +157,9 @@ public class Partie {
 
     /**
      * Méthode qui permet de lancer la partie en mode console
+     *
+     * @author Line POUVARET
+     * @author Mickaël TURNEL
      */
     public void lancerPartie() {
         joueursPartie.get(0).setPremier(true);
@@ -218,6 +224,8 @@ public class Partie {
 
     /**
      * Méthode qui permet d'afficher le tableau des scores de la partie
+     *
+     * @author Mickaël TURNEL
      */
     public void tableauScores() {
         System.out.println("Scores : ");
