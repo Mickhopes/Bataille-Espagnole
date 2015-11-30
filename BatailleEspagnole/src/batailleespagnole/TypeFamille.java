@@ -3,7 +3,7 @@ package batailleespagnole;
 /**
  * Enumération des familles des cartes
  *
- * @author Line
+ * @author Line POUVARET
  */
 public enum TypeFamille {
 

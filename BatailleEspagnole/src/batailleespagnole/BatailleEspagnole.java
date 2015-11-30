@@ -8,12 +8,16 @@ package batailleespagnole;
 /**
  * Classe principale du programme
  *
- * @author Lily
+ * @author Line POUVARET
+ * @author Mickaël TURNEL
  */
 public class BatailleEspagnole {
 
     /**
      * Méthode qui affiche le menu du programme
+     *
+     * @author Line POUVARET
+     * @author Mickaël TURNEL
      */
     public static void menu() {
         System.out.println("");
@@ -24,6 +28,7 @@ public class BatailleEspagnole {
     }
 
     /**
+     * @author Mickaël TURNEL
      * @param args the command line arguments
      */
     public static void main(String[] args) {

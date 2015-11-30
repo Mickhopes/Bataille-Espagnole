@@ -3,7 +3,8 @@ package batailleespagnole;
 /**
  * Classe servant à représenter une carte de jeu
  *
- * @author Line
+ * @author Line POUVARET
+ * @author Mickaël TURNEL
  */
 public class Carte implements Comparable<Carte> {
 
@@ -41,7 +42,6 @@ public class Carte implements Comparable<Carte> {
      * @param ordre L'ordre de la carte
      * @param famille La famille de la carte
      *
-     * @see TypeOrdre
      * @see TypeFamille
      */
     public Carte(TypeOrdre ordre, TypeFamille famille) {
