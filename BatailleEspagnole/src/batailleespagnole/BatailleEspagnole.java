@@ -5,6 +5,8 @@
  */
 package batailleespagnole;
 
+import exception.NotEnoughPlayersException;
+
 /**
  * Classe principale du programme
  *
@@ -67,7 +69,12 @@ public class BatailleEspagnole {
                         System.out.println("Joueur " + (j + 1));
                         p.ajoutJoueur(new Joueur("Joueur " + (j + 1), true));
                     }
-                    p.lancerPartie();
+                    
+                    try {
+                        p.lancerPartie();
+                    } catch (NotEnoughPlayersException ex) {
+                        System.err.println(ex.getMessage());
+                    }
                 default:
                     break;
             }

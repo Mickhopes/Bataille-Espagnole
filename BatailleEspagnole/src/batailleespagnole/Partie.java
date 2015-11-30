@@ -1,5 +1,6 @@
 package batailleespagnole;
 
+import exception.NotEnoughPlayersException;
 import java.util.ArrayList;
 import java.util.Map.Entry;
 
@@ -44,13 +45,10 @@ public class Partie {
      * de points max à 300
      *
      * @param nbJoueurs Le nombre de joueurs de la partie
+     * @throws IllegalArgumentException
      */
-    public Partie(int nbJoueurs) {
-        this.nbJoueurs = nbJoueurs;
-        this.nbJeux = 10;
-        this.nbPointsMax = 300;
-
-        this.joueursPartie = new ArrayList<>();
+    public Partie(int nbJoueurs) throws IllegalArgumentException {
+        this(nbJoueurs, 10, 300);
     }
 
     /**
@@ -59,8 +57,17 @@ public class Partie {
      * @param nbJoueurs Le nombre de joueurs de la partie
      * @param nbJeux Le nombre de jeux max de la partie
      * @param nbPointsMax Le nombre de points max de la partie
+     * @throws IllegalArgumentException
      */
-    public Partie(int nbJoueurs, int nbJeux, int nbPointsMax) {
+    public Partie(int nbJoueurs, int nbJeux, int nbPointsMax) throws IllegalArgumentException {
+        if (nbJoueurs < 2 || nbJoueurs > 4) {
+            throw new IllegalArgumentException("Le nombre de joueurs doit être entre 2 et 4");
+        }
+        
+        if (nbJeux < 0 || nbPointsMax < 0) {
+            throw new IllegalArgumentException("Le nombre de points et de jeux doivent être positif");
+        }
+        
         this.nbJoueurs = nbJoueurs;
         this.nbJeux = nbJeux;
         this.nbPointsMax = nbPointsMax;
@@ -137,10 +144,15 @@ public class Partie {
      * Méthode qui permet d'ajouter un joueur à la partie
      *
      * @author Line POUVARET
+     * @author Mickaël TURNEL
      * @param j Joueur Le joueur à ajouter
+     * @throws IndexOutOfBoundsException
      * @see Joueur
      */
-    public void ajoutJoueur(Joueur j) {
+    public void ajoutJoueur(Joueur j) throws IndexOutOfBoundsException {
+        if (joueursPartie.size() == nbJoueurs) {
+            throw new IndexOutOfBoundsException("Le nombre de joueurs limite a été atteint");
+        }
         joueursPartie.add(j);
     }
 
@@ -151,7 +163,7 @@ public class Partie {
      * @param j Joueur le jouer à enlever
      * @see Joueur
      */
-    public void supprJoueur(Joueur j) {
+    public void supprJoueur(Joueur j) {        
         joueursPartie.remove(j);
     }
 
@@ -160,8 +172,13 @@ public class Partie {
      *
      * @author Line POUVARET
      * @author Mickaël TURNEL
+     * @throws NotEnoughPlayersException
      */
-    public void lancerPartie() {
+    public void lancerPartie() throws NotEnoughPlayersException {
+        if (joueursPartie.size() != nbJoueurs) {
+            throw new NotEnoughPlayersException("Il faut " + nbJoueurs + " joueurs pour lancer la partie mais seulement " + joueursPartie.size() + " sont présents");
+        }
+        
         joueursPartie.get(0).setPremier(true);
         int i = 0, max = 0;
         Joueur jWin = null;
