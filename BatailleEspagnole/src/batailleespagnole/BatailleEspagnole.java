@@ -48,7 +48,7 @@ public class BatailleEspagnole {
 
                     do {
                         nbIA = LectureClavier.lireEntier("\nCombien de joueurs Ordinateur (0-4)?");
-                    } while (nbIA < 0 || nbIA > 4);
+                    } while (nbIA < 0 || nbIA > 4 || nbIA>nbJoueurs);
                     do {
                         nbJeuxMax = LectureClavier.lireEntier("\nEntrez un nombre de jeux maximum (0=infini)");
                         nbPtsMax = LectureClavier.lireEntier("\nEntrez un nombre de points maximum (0=infini)");

@@ -226,12 +226,14 @@ public class Joueur {
         if (tasDeCartes.isEmpty()) {
             /* le jeu est fini */
             /* ajouter exceptions */
+            return null;
         }
 
         /* Si le joueur a déjà trois cartes en main */
         if (cartesEnMain.size() == 3) {
             /* On lui donne rien */
             /* ajouter exceptions */
+            return null;
         }
         Carte c = tasDeCartes.pop();
         cartesEnMain.add(c);

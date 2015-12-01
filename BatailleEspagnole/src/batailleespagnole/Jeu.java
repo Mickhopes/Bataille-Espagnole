@@ -287,16 +287,16 @@ public class Jeu {
             /* Si le joueur actuel est une IA */
             if (joueursPartie.get(i).isIA()) {
                 /* A DECOMMENTER SI ON VEUT SAVOIR CE QUE POSSEDE L'IA */
-                /*
+                
                  System.out.println("====Cartes En Main====");
                  /* On affiche les cartes en main du joueur */
-                /*
+                
                  for (int j = 0; j < cartesEnMain.size(); j++) {
                  System.out.print(j + 1 + " - ");
                  System.out.println(cartesEnMain.get(j));
                  }
                  System.out.println("");
-                 */
+                 
 
                 /* On récupère la carte déterminée par l'algo d'IA */
                 Carte c = joueursPartie.get(i).jouer(jouerIA(joueursPartie.get(i)));
@@ -311,8 +311,17 @@ public class Jeu {
                 //afficherPliActuel();
                 /* On fait piocher notre joueur ensuite */
                 if (!tasDeCartes.isEmpty()) {
-                    c = joueursPartie.get(i).piocher(tasDeCartes);
+                    if(tasDeCartes.size()%joueursPartie.size() == 0 || tasDeCartes.size() >= joueursPartie.size()){
+                        c = joueursPartie.get(i).piocher(tasDeCartes);
+                        System.out.println(joueursPartie.get(i).getNom()+" a pioché "+c);
+                    }
+                    else{
+                        c = joueursPartie.get(i).piocher(tasDeCartes);
+                        System.out.println(joueursPartie.get(i).getNom()+" a pioché "+c);
+                        tasDeCartes.clear();
+                    }
                 }
+                System.out.println("(Il reste "+tasDeCartes.size()+" cartes dans le tas)");
 
             } /* Sinon */ else {
 
@@ -346,10 +355,19 @@ public class Jeu {
                 //afficherPliActuel();
                 /* On fait piocher notre joueur ensuite */
                 if (!tasDeCartes.isEmpty()) {
-                    c = joueursPartie.get(i).piocher(tasDeCartes);
-                    /* MODE CONSOLE */
-                    System.out.println(joueursPartie.get(i).getNom() + " a pioché : " + c.getOrdre() + " de " + c.getFamille());
+                    if(tasDeCartes.size()%joueursPartie.size() == 0 || tasDeCartes.size() >= joueursPartie.size()){
+                        c = joueursPartie.get(i).piocher(tasDeCartes);
+                        /* MODE CONSOLE */
+                        System.out.println(joueursPartie.get(i).getNom() + " a pioché : " + c);
+                    }
+                    else{
+                        c = joueursPartie.get(i).piocher(tasDeCartes);
+                        System.out.println(joueursPartie.get(i).getNom()+" a pioché "+c);
+                        tasDeCartes.clear();
+                    }
                 }
+                
+                System.out.println("(Il reste "+tasDeCartes.size()+" cartes dans le tas)");
             } /* Fin du jouer pour vrai joueur */
 
             i++;
